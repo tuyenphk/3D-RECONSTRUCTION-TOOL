@@ -1,15 +1,14 @@
 import React from 'react';
 import { Jumbotron as Jumbo, Container, Button } from 'react-bootstrap';
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 const Styles = styled.div`
-  .jumbo {
-   
+  .jumbo {  
     background-size: cover;
     color: #efefef;
     height: 400px;
     position: relative;
-    z-index: -2;
     margin-left: 20px;
     margin-right: 20px;
   }
@@ -50,17 +49,28 @@ const Styles = styled.div`
 }
 `;
 
-export const Jumbotron = () => (
+
+export class Jumbotron extends React.Component{
+
+  render(){
+    return(
   <Styles>
     <Jumbo fluid className="jumbo">
       <div className="overlay"></div>
       <Container className="center">
         <h1>Welcome 3D astronomical models</h1>
         <p>
-        <button class="btn btn-success btn-lg btn-getStarted" href="Modeling.js" role="button">Get Started</button>
-        <button class="btn btn-success btn-lg btn-getStarted" href="About.js" role="button">Learn More</button>
+          <NavLink to="/modeling"> 
+          <button class="btn btn-success btn-lg btn-getStarted">Get started</button>
+          </NavLink>
+
+          <NavLink to="/about"> 
+          <button class="btn btn-success btn-lg btn-getStarted">Learn More</button>
+          </NavLink>
         </p>
       </Container>
     </Jumbo>
   </Styles>
-)
+    );
+  }
+}

@@ -1,0 +1,23 @@
+{
+    "Header": {
+        "title": "Welcome 3D astronomical models"
+
+    },
+    "About": {
+        "paragraph": "The goal of our application is to analyze and visualize the 2D image of objects in astrophysiscs. As images are processes, the web application will make several evaluations by symmetry detection into 3D reconstructed models. Our project will let users have a more thorough space view."
+       
+    },
+      
+    "Modeling":{
+
+    },
+
+    "Resources":{
+
+    },
+
+    "Team": [
+    ]
+   
+
+}

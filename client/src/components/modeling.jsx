@@ -22,11 +22,17 @@ export class modeling extends Component {
                 <h2>3D MODELING</h2>
                 <h3>Upload a 2D image to get a 3D model</h3>         
                 <input className="btn btn-secondary" type="file" onChange={this.fileChangedHandler} />
-             
+              <a>
+                <button className="btn btn-primary" ng-click="showUpload() " ng-if="fileName.length > 0" id="renderButton">
+                  Upload
+                </button>
+              </a>{" "}
+
+              <a >
                 <button className="btn btn-primary" ng-click="showConfirm() " ng-if="fileName.length > 0" id="renderButton">
                   Render 3D Model
                 </button>
-
+                </a>{""}
               </div>
             </div>
           </div>

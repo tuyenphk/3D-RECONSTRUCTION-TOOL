@@ -16,7 +16,7 @@ export class about extends Component {
       <div className=" wow fadeInUp slow">
           <div className="row pt-5 justify-content-center">
               <div className="col text-center">
-                  <h1><b>Speed up the space object process. </b></h1>
+                  <h1><b>Speed up the space object process </b></h1>
               </div>
           </div>
       </div>

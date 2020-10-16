@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+
+import {Canvas } from 'react-three-fiber'
+import {Box} from 'drei'
 import axios from 'axios'
 export class modeling extends Component {
   state={
@@ -26,7 +29,12 @@ export class modeling extends Component {
                 <button className="btn btn-primary" ng-click="showConfirm() " ng-if="fileName.length > 0" id="renderButton">
                   Render 3D Model
                 </button>
-
+                <Canvas>
+                 
+                  <Box>
+                    <meshStandardMaterial attach='material'/>
+                  </Box>
+                </Canvas>
               </div>
             </div>
           </div>

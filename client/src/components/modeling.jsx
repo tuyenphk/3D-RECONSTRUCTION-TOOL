@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import axios from 'axios'
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export class modeling extends Component {
   state={
@@ -8,20 +9,31 @@ export class modeling extends Component {
 
   fileChangedHandler = event => {
     this.setState({
-      selectedFile: event.target.files[0]
+      selectedFile: event.target.files[0],
+      loaded: 0,
     })
   }
 
-  fileUploadHandler = () => {
-    const fd = new FormData();
-    fd.append ('image', this.state.selectedFile,this.state.selectedFile.name);
-    axios.post('https://storage.googleapis.com/uploadimage12', fd)
-    .then(function(response){
-      console.log(response);
-    });
-  }
-
-  uploadHandler
+  
+  uploadHandler = () => {
+    const data = new FormData() 
+    for(var x = 0; x<this.state.selectedFile.length; x++) {
+      data.append('file', this.state.selectedFile[x])
+    }
+    axios.post("http://localhost:8000/upload", data, {
+      onUploadProgress: ProgressEvent => {
+        this.setState({
+          loaded: (ProgressEvent.loaded / ProgressEvent.total*100),
+        })
+      },
+    })
+      .then(res => { // then print response status
+        toast.success('upload success')
+      })
+      .catch(err => { // then print response status
+        toast.error('upload fail')
+      })
+    }
   render(){
     return (
       <div id="modeling">
@@ -33,7 +45,7 @@ export class modeling extends Component {
                 <h3>Upload a 2D image to get a 3D model</h3>         
                 <input className="btn btn-secondary" type="file" onChange={this.fileChangedHandler} />
               <a>
-                <button className="btn btn-primary" onClick={this.fileUploadHandler} id="renderButton">
+                <button className="btn btn-primary" onClick={this.uploadHandler} id="renderButton">
                   Upload
                 </button>
               </a>{" "}

@@ -27,7 +27,7 @@ export class about extends Component {
                     </h3>
                     <p className="lead">
                         <b>Generate a 3D space models from just a 2D image!</b> Researchers, scientists and educational specialists who 
-                        once needed to manually design 3D models can now simply upload a 2D iamge and recieve an automatically generated 3D
+                        once needed to manually design 3D models can now simply upload a 2D image and recieve an automatically generated 3D
                         model.
                     </p>
                 </div>

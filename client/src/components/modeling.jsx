@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios'
+
 export class modeling extends Component {
   state={
     selectedFile: null
@@ -9,6 +10,15 @@ export class modeling extends Component {
     this.setState({
       selectedFile: event.target.files[0]
     })
+  }
+
+  fileUploadHandler = () => {
+    const fd = new FormData();
+    fd.append ('image', this.state.selectedFile,this.state.selectedFile.name);
+    axios.post('https://storage.googleapis.com/uploadimage12', fd)
+    .then(function(response){
+      console.log(response);
+    });
   }
 
   uploadHandler
@@ -23,7 +33,7 @@ export class modeling extends Component {
                 <h3>Upload a 2D image to get a 3D model</h3>         
                 <input className="btn btn-secondary" type="file" onChange={this.fileChangedHandler} />
               <a>
-                <button className="btn btn-primary" ng-click="showUpload() " ng-if="fileName.length > 0" id="renderButton">
+                <button className="btn btn-primary" onClick={this.fileUploadHandler} id="renderButton">
                   Upload
                 </button>
               </a>{" "}

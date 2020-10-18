@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import * as THREE from "three";
 import { MTLLoader, OBJLoader } from "three-obj-mtl-loader";
 //import OrbitControls from "three-orbitcontrols";
-import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 export class Rend extends Component {
 
@@ -19,7 +19,7 @@ export class Rend extends Component {
 
     //add Camera
     this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    this.camera.position.z = 20;
+    this.camera.position.z = 200;
     this.camera.position.y = 5;
 
     //Camera Controls
@@ -27,7 +27,7 @@ export class Rend extends Component {
     controls.enableDamping = true;
     controls.campingFactor = 0.25;
     controls.enableZoom = true;
-    
+
     //LIGHTS
     var lights = [];
     lights[0] = new THREE.PointLight(0x304ffe, 1, 0);
@@ -88,7 +88,7 @@ export class Rend extends Component {
       var objLoader = new OBJLoader();
       objLoader.setMaterials(materials);
       objLoader.load(
-        "./assets/r2-d2.obj",
+        "./assets/freedom.obj",
         object => {
           this.freedomMesh = object;
           this.freedomMesh.position.setY(3); //or  this
@@ -122,7 +122,7 @@ export class Rend extends Component {
     // -----Step 3--------
     //Rotate Models
     if (this.cube) this.cube.rotation.y += 0.01;
-    if (this.freedomMesh) this.freedomMesh.rotation.y += 0.01;
+    if (this.object) this.object.rotation.y += 0.01;
 
     this.renderScene();
     this.frameId = window.requestAnimationFrame(this.animate);

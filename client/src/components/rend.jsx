@@ -19,7 +19,7 @@ export class Rend extends Component {
 
     //add Camera
     this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    this.camera.position.z = 100;
+    this.camera.position.z = 10;
     this.camera.position.y = 5;
 
     //Camera Controls
@@ -50,12 +50,12 @@ export class Rend extends Component {
 
   addModels() {
     // -----Step 1--------
-    const geometry = new THREE.BoxGeometry(5, 5, 5);
+    const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
     const material = new THREE.MeshBasicMaterial({
       color: "#0F0"
     });
     this.cube = new THREE.Mesh(geometry, material);
-    this.scene.add(this.cube);
+    //this.scene.add(this.cube);
 
     // -----Step 2--------
     //LOAD TEXTURE and on completion apply it on SPHERE
@@ -88,11 +88,13 @@ export class Rend extends Component {
       var objLoader = new OBJLoader();
       objLoader.setMaterials(materials);
       objLoader.load(
-        "./assets/freedom.obj",
+        "./assets/plane.obj",
         object => {
           this.freedomMesh = object;
-          this.freedomMesh.position.setY(3); //or  this
-          this.freedomMesh.scale.set(0.02, 0.02, 0.02);
+          this.freedomMesh.position.setX(0.5); //or  this
+          this.freedomMesh.position.setY(1); //or  this
+          this.freedomMesh.position.setZ(6); //or  this
+          this.freedomMesh.scale.set(10, 10, 10);
           this.scene.add(this.freedomMesh);
         },
         xhr => {
@@ -122,7 +124,6 @@ export class Rend extends Component {
     // -----Step 3--------
     //Rotate Models
     if (this.cube) this.cube.rotation.y += 0.01;
-    if (this.object) this.object.rotation.y += 0.01;
 
     this.renderScene();
     this.frameId = window.requestAnimationFrame(this.animate);

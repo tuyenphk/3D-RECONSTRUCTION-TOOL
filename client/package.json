@@ -9,7 +9,7 @@
     "axios": "^0.20.0",
     "drei": "^1.5.7",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react-dom": "^16.14.0",
     "react-images-upload": "^1.2.8",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
@@ -18,7 +18,9 @@
     "react-three-fiber": "^5.0.3",
     "react-three-renderer": "^3.2.4",
     "sass": "^1.27.0",
-    "three": "^0.121.1"
+    "three": "^0.121.1",
+    "three-obj-mtl-loader": "^1.0.3",
+    "three-orbit-controls": "^82.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

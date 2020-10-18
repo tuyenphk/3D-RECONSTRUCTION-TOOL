@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-
 import axios from 'axios';
-import { toast } from 'react-toastify';
 
 export class modeling extends Component {
   constructor(props){
@@ -68,6 +66,11 @@ export class modeling extends Component {
               <a>
                 <button className="btn btn-primary" onClick={this.uploadHandler} id="renderButton">
                   Upload
+                </button>
+              </a>{" "}
+              <a>
+                <button className="btn btn-primary" onClick={this.renderHandler} id="renderButton">
+                  Render 3D Model
                 </button>
               </a>{" "}
 

@@ -59,7 +59,7 @@ export class modeling extends Component {
         <div className="container">
           <div className="row">
             <div className="col-xs-12 col-md-8"> 
-              <div className="about-text">
+              <div className="modeling-text">
                 <h2>3D MODELING</h2>
                 <h3>Upload a 2D image to get a 3D model</h3>         
                 <input className="btn btn-secondary" type="file" onChange={this.fileChangedHandler} />

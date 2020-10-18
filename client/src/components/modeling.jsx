@@ -3,37 +3,57 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 export class modeling extends Component {
-  state={
-    selectedFile: null
+  constructor(props){
+    super(props);
+    this.state={
+      selectedFile: ''
+    }
   }
 
   fileChangedHandler = event => {
     this.setState({
       selectedFile: event.target.files[0],
-      loaded: 0,
     })
   }
 
-  
-  uploadHandler = () => {
+  uploadHandler = async (event) => { 
+    event.preventDefault() 
     const data = new FormData() 
-    for(var x = 0; x<this.state.selectedFile.length; x++) {
-      data.append('file', this.state.selectedFile[x])
-    }
-    axios.post("http://localhost:8000/upload", data, {
-      onUploadProgress: ProgressEvent => {
-        this.setState({
-          loaded: (ProgressEvent.loaded / ProgressEvent.total*100),
-        })
-      },
-    })
-      .then(res => { // then print response status
-        toast.success('upload success')
-      })
-      .catch(err => { // then print response status
-        toast.error('upload fail')
-      })
-    }
+    data.append('image', 
+    this.state.selectedFile) 
+    await axios.post("http://localhost:9001/uploads", 
+    data, { }).then(res => { 
+    // then print response status 
+    console.log(res.statusText) 
+    }).catch(error => 
+    console.log(error)) 
+}
+
+  // uploadHandler = event => {
+  //   let formdata = new FormData()
+  //   formdata.append('image', this.state.selectedFile)
+  //   axios({
+  //     url: 'http://localhost:8000/upload',
+  //     method: "POST",
+  //     headers: {
+  //       authorization: "your token"
+  //     },
+  //     data: formdata
+  //   }). then ((res)=>{
+
+  //   })
+  // }
+
+  // uploadHandler = event => {
+  //   event.preventDefault()
+  //   const data = new FormData() 
+  //   data.append('image', this.state.selectedFile)
+  //   axios.post("http://localhost:9001/uploads", data, { 
+  //   })
+  //     .then(res => { // then print response status
+  //       console.log(res.statusText)
+  //     }).catch(error => console.log(error))
+  //   }
   render(){
     return (
       <div id="modeling">

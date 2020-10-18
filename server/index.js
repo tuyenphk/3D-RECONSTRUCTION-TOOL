@@ -1,37 +1,51 @@
-var express = require('express');
-var app = express();
-var multer = require('multer')
-var cors = require('cors');
+const express = require('express')
+const cors = require('cors')
+const bodyParser = require('body-parser')
+const multer = require('multer')
+
+const uploadImage = require('./helpers/helpers')
+
+const app = express()
+
+const multerMid = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    // no larger than 5mb.
+    fileSize: 5 * 1024 * 1024,
+  },
+});
 
 app.use(cors());
+app.disable('x-powered-by')
+app.use(multerMid.single('file'))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}))
 
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-  cb(null, 'public')
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' +file.originalname )
+app.post('/uploads', async (req, res, next) => {
+  try {
+    const myFile = req.file
+    const imageUrl = await uploadImage(myFile)
+
+    res
+      .status(200)
+      .json({
+        message: "Upload was successful",
+        data: imageUrl
+      })
+  } catch (error) {
+    next(error)
   }
 })
 
-var upload = multer({ storage: storage }).single('file');
-
-app.post('/upload',function(req, res) {
-     
-  upload(req, res, function (err) {
-         if (err instanceof multer.MulterError) {
-             return res.status(500).json(err)
-         } else if (err) {
-             return res.status(500).json(err)
-         }
-    return res.status(200).send(req.file)
-
+app.use((err, req, res, next) => {
+  res.status(500).json({
+    error: err,
+    message: 'Internal server error!',
   })
+  next()
+})
 
-});
+app.listen(9001, () => {
+  console.log('app now listening for requests!!!')
+})
 
-app.listen(8000, function() {
-
-  console.log('App running on port 8000');
-
-});

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
@@ -50,11 +51,7 @@ export class modeling extends Component {
                 </button>
               </a>{" "}
 
-              <a >
-                <button className="btn btn-primary" ng-click="showConfirm() " ng-if="fileName.length > 0" id="renderButton">
-                  Render 3D Model
-                </button>
-                </a>{""}
+             
               </div>
             </div>
           </div>

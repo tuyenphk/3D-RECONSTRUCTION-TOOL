@@ -19,7 +19,7 @@ export class Rend extends Component {
 
     //add Camera
     this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    this.camera.position.z = 200;
+    this.camera.position.z = 100;
     this.camera.position.y = 5;
 
     //Camera Controls
@@ -134,7 +134,10 @@ export class Rend extends Component {
   render() {
     return (
       <div
-        style={{ width: "800px", height: "800px" }}
+        style={{
+          width: "800px", height: "800px",
+          margin: "auto",
+        }}
         ref={mount => {
           this.mount = mount;
         }}

@@ -1,12 +1,8 @@
 import React, {Component} from 'react';
-<<<<<<< HEAD
 
-import axios from 'axios'
-=======
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
->>>>>>> c292c7426d190c9b23f3a9c42bfd7c5e400b4cd0
 export class modeling extends Component {
   state={
     selectedFile: null
@@ -55,15 +51,7 @@ export class modeling extends Component {
                 </button>
               </a>{" "}
 
-              <a >
-                <button className="btn btn-primary" ng-click="showConfirm() " ng-if="fileName.length > 0" id="renderButton">
-                  Render 3D Model
-                </button>
-<<<<<<< HEAD
-               
-=======
-                </a>{""}
->>>>>>> c292c7426d190c9b23f3a9c42bfd7c5e400b4cd0
+             
               </div>
             </div>
           </div>

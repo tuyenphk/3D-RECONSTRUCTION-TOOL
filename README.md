@@ -5,9 +5,10 @@
 The application's cloud-hosted neural network offers symmetry detection services for 2-dimensional astronomy images, and reproduces them in a 3-dimensional format.
 Cloud-based machine learning has rapidly evolved into a vital and sophisticated aspect of modern software development. The goal of the 3D Reconstruction Tool aims to explore and transform these components into an entertaining, informative platform.
 
-# Release Note
+# Release Note(s)
 
 v0.1: 
+https://github.com/tuyenphk/3D-RECONSTRUCTION-TOOL/releases/tag/v0.1
 - Web Application instantiated with Nodejs, serviced on Google Compute Engine
 - Client-side image upload and viewability
 - File navigation for local images. Images can also be uploaded directly to the Google Cloud via POSTMAN, but this feature is currently unavailable from the website for this release. 

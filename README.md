@@ -9,7 +9,7 @@ Cloud-based machine learning has rapidly evolved into a vital and sophisticated 
 
 v0.1: 
 - Web Application instantiated with Nodejs, serviced on Google Compute Engine
-- Client-side image upload and viewability
+- Client-side image upload
 - File navigation for local images
 - Server & image bucket instantiated on Google Compute Engine
 
@@ -23,15 +23,9 @@ To enjoy our application, follow those steps below:
 4. run the react application: <strong>npm start</strong>
 
 <strong>Server-side</Strong>
-<<<<<<< HEAD
 1. change the directory to the backend folder: <strong>cd server</strong>
 2. install dependencie: <strong>npm install --save multer express cors body-parser @google-cloud/storage</strong>
 3. run the backend server: <strong>node index.js<strong>
-=======
-1. cd server
-2. install dependencies: npm install --save multer express cors body-parser @google-cloud/storage
-3. node index.js
->>>>>>> c6d00f6a7a5ed8e4b41d2e13950ddffd47692620
 
 # How to Use/Test This Release
 
@@ -42,7 +36,9 @@ and proceed to http://34.105.28.90:8888/ once it is running.
 The site has several points of navigation: 
 <strong>HOME, ABOUT, MODELING, RESOURCES, and TEAM.</strong>
 
-In the <strong>ABOUT</strong> tab, you may view the front page.
+In the <strong>HOME</strong> tab, you may view the front page.
+
+In the <strong>ABOUT</strong> tab, you may see our project description.
 
 In the <strong>MODELING</strong> tab, you may view a sample rendered 3D model, as well as click to navigate your local directory for images to upload.
 Upload functionality is midway in development, so this button is primarily used for file navigation only.

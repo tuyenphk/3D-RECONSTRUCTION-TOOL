@@ -9,9 +9,11 @@ Cloud-based machine learning has rapidly evolved into a vital and sophisticated 
 
 v0.1: 
 - Web Application instantiated with Nodejs, serviced on Google Compute Engine
-- Client-side image upload
-- File navigation for local images
+- Client-side image upload and viewability
+- File navigation for local images. Images can also be uploaded directly to the Google Cloud via POSTMAN, but this feature is currently unavailable from the website for this release. 
+- a pixel2Mesh output.obj file
 - Server & image bucket instantiated on Google Compute Engine
+- Sample 3D Model, housed in MODELING tab, with zoom in/out features and 360 viewing capability
 
 # Install instruction
 To enjoy our application, follow those steps below:

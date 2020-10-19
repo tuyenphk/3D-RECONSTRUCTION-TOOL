@@ -11,7 +11,9 @@ v0.1:
 - Web Application instantiated with Nodejs, serviced on Google Compute Engine
 - Client-side image upload and viewability
 - File navigation for local images
+- Able to directly upload images to Google Cloud using POSTMAN. Ongoing internal server issues prevent images from being updated by the website for this release.
 - Server & image bucket instantiated on Google Compute Engine
+- a sample 3D model (housed in the MODELING tab) with ability to zoom in/out and navigate at 360 degrees
 
 # Install instruction
 To enjoy our application, follow those steps below:

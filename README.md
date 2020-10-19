@@ -5,9 +5,13 @@
 The application's cloud-hosted neural network offers symmetry detection services for 2-dimensional astronomy images, and reproduces them in a 3-dimensional format.
 Cloud-based machine learning has rapidly evolved into a vital and sophisticated aspect of modern software development. The goal of the 3D Reconstruction Tool aims to explore and transform these components into an entertaining, informative platform.
 
-
 # Release Note
 
+v0.1: 
+- Web Application instantiated with Nodejs, serviced on Google Compute Engine
+- Client-side image upload and viewability
+- File navigation for local images
+- Server & image bucket instantiated on Google Compute Engine
 
 # Install instruction
 To enjoy our application, follow those steps below:
@@ -20,9 +24,26 @@ To enjoy our application, follow those steps below:
 
 <strong>Server-side</Strong>
 1. cd server
-2. install dependencie: npm install --save multer express cors body-parser @google-cloud/storage
+2. install dependencies: npm install --save multer express cors body-parser @google-cloud/storage
 3. node index.js
 
-# Instruction on how to use the release and how to test
+# How to Use/Test This Release
 
-<strong>Link to source code for the release note</strong>
+In the <strong>client</strong> folder, you may start the web application by typing into the console:
+<strong>npm start</strong>
+and proceed to http://34.105.28.90:8888/ once it is running. 
+
+The site has several points of navigation: 
+<strong>HOME, ABOUT, MODELING, RESOURCES, and TEAM.</strong>
+
+In the <strong>ABOUT</strong> tab, you may view the front page.
+
+In the <strong>MODELING</strong> tab, you may view a sample rendered 3D model, as well as click to navigate your local directory for images to upload.
+Upload functionality is midway in development, so this button is primarily used for file navigation only.
+
+<strong>RESOURCES and TEAM</strong> are to contain miscellaneous information about the components of the project and its members.
+
+
+# Link to Source Code
+
+<strong>https://github.com/tuyenphk/3D-RECONSTRUCTION-TOOL</strong>

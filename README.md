@@ -21,14 +21,14 @@ To enjoy our application, follow those steps below:
 
 <strong>Client-side</Strong>
 1. clone the project into your local machine: git clone https://github.com/tuyenphk/3D-RECONSTRUCTION-TOOL.git
-2. change the directory to client: cd client
-3. install dependencies: npm install (Make sure install all dependencies in the package.json)
-4. run the react application: npm start
+2. change the directory to client: <strong>cd client</strong>
+3. install dependencies: <strong>npm install</strong> (Make sure install all dependencies in the package.json)
+4. run the react application: <strong>npm start</strong>
 
 <strong>Server-side</Strong>
-1. cd server
-2. install dependencies: npm install --save multer express cors body-parser @google-cloud/storage
-3. node index.js
+1. change the directory to the backend folder: <strong>cd server</strong>
+2. install dependencie: <strong>npm install --save multer express cors body-parser @google-cloud/storage</strong>
+3. run the backend server: <strong>node index.js<strong>
 
 # How to Use/Test This Release
 
@@ -39,7 +39,9 @@ and proceed to http://34.105.28.90:8888/ once it is running.
 The site has several points of navigation: 
 <strong>HOME, ABOUT, MODELING, RESOURCES, and TEAM.</strong>
 
-In the <strong>ABOUT</strong> tab, you may view the front page.
+In the <strong>HOME</strong> tab, you may view the front page.
+
+In the <strong>ABOUT</strong> tab, you may see our project description.
 
 In the <strong>MODELING</strong> tab, you may view a sample rendered 3D model, as well as click to navigate your local directory for images to upload.
 Upload functionality is midway in development, so this button is primarily used for file navigation only.

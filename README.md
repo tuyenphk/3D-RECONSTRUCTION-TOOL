@@ -7,8 +7,8 @@ Cloud-based machine learning has rapidly evolved into a vital and sophisticated 
 
 # Release Note(s)
 
-v0.1: 
-https://github.com/tuyenphk/3D-RECONSTRUCTION-TOOL/releases/tag/v0.1
+v1.0: 
+https://github.com/tuyenphk/3D-RECONSTRUCTION-TOOL/releases/tag/v1.0
 - Web Application instantiated with Nodejs, serviced on Google Compute Engine
 - Client-side image upload and viewability
 - File navigation for local images. Images can also be uploaded directly to the Google Cloud via POSTMAN, but this feature is currently unavailable from the website for this release. 
@@ -32,12 +32,12 @@ To enjoy our application, follow those steps below:
 
 # How to Use/Test This Release
 
-In the <strong>client</strong> folder, you may start the web application by typing into the console:
-<strong>npm start</strong>
-and proceed to http://34.105.28.90:8888/ once it is running. 
+You have two options to run this release:
 
-The site has several points of navigation: 
-<strong>HOME, ABOUT, MODELING, RESOURCES, and TEAM.</strong>
+1. Dowload the github package and then in the client folder, you may start the web application by typing into the console: <strong>npm start</strong>. It will pop up the react web application in your browser and you can test our application.
+2. Go to this link http://34.105.28.90:8888/ 
+
+The website has several points of navigation: <strong>HOME, ABOUT, MODELING, RESOURCES, and TEAM.</strong>
 
 In the <strong>HOME</strong> tab, you may view the front page.
 

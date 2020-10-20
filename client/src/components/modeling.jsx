@@ -1,32 +1,30 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import axios from 'axios';
 
-export class modeling extends Component {
-  constructor(props){
-    super(props);
-    this.state={
-      selectedFile: ''
-    }
-  }
+const Modeling = () => {
+  const [file, setFile] = useState(null);
+  const fileChangedHandler = event => {
+    console.log(event.target.files[0]);
+    let reader = new FileReader();
+    reader.onload = function(e) {
+      setFile(e.target.result);
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
 
-  fileChangedHandler = event => {
-    this.setState({
-      selectedFile: event.target.files[0],
-    })
-  }
 
-  uploadHandler = async (event) => { 
-    event.preventDefault() 
-    const data = new FormData() 
-    data.append('image', 
-    this.state.selectedFile) 
-    await axios.post("http://localhost:9001/uploads", 
-    data, { }).then(res => { 
-    // then print response status 
-    console.log(res.statusText) 
-    }).catch(error => 
-    console.log(error)) 
-}
+//   uploadHandler = async (event) => { 
+//     event.preventDefault() 
+//     const data = new FormData() 
+//     data.append('image', 
+//     this.state.selectedFile) 
+//     await axios.post("http://localhost:9001/uploads", 
+//     data, { }).then(res => { 
+//     // then print response status 
+//     console.log(res.statusText) 
+//     }).catch(error => 
+//     console.log(error)) 
+// }
 
   // uploadHandler = event => {
   //   let formdata = new FormData()
@@ -53,7 +51,7 @@ export class modeling extends Component {
   //       console.log(res.statusText)
   //     }).catch(error => console.log(error))
   //   }
-  render(){
+  
     return (
       <div id="modeling">
         <div className="container">
@@ -61,27 +59,33 @@ export class modeling extends Component {
             <div className="col-xs-12 col-md-8"> 
               <div className="modeling-text">
                 <h2>3D MODELING</h2>
-                <h3>Upload a 2D image to get a 3D model</h3>         
-                <input className="btn btn-secondary" type="file" onChange={this.fileChangedHandler} />
-              <a>
-                <button className="btn btn-primary" onClick={this.uploadHandler} id="renderButton">
+                <h3>Upload a 2D image to get a 3D model</h3>        
+                
+                <input className="btn btn-secondary" 
+                      id="fileInput" 
+                      name="file" type="file" 
+                      onChange={fileChangedHandler} />
+               
+                {/* <button className="btn btn-primary" style={{float:"left", margin: "0px"}}
+                          id="renderButton">
                   Upload
-                </button>
-              </a>{" "}
-              <a>
-                <button className="btn btn-primary" onClick={this.renderHandler} id="renderButton">
+                </button> */}
+             
+                <button className="btn btn-primary" style={{float:"left", marginLeft: "10px", marginBottom: "10px"}} 
+                        id="renderButton">
                   Render 3D Model
                 </button>
-              </a>{" "}
 
-             
+                
+              
               </div>
             </div>
           </div>
+          <img src={file} alt={""} width="400" height="400" text-align="left" style={{display:'block'}} />
         </div>
       </div>
     )
   }
-}
 
-export default modeling
+
+export default Modeling;

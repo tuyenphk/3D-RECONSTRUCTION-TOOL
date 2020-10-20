@@ -275,13 +275,14 @@ header .intro-text {
 	left: 0;
 }
 
+
 /* Resources Section */
 #resources{
-	
+	padding: 100px;
 }
 /* Team Section */
 #team {
-	padding: 100px 0;
+	padding: 100px;
 }
 #team h4 {
 	margin: 5px 0;

@@ -3,13 +3,26 @@ import axios from 'axios';
 
 const Modeling = () => {
   const [file, setFile] = useState(null);
+
   const fileChangedHandler = event => {
-    console.log(event.target.files[0]);
+    let file = event.target.files[0];
     let reader = new FileReader();
+
+    console.log(file);
     reader.onload = function(e) {
       setFile(e.target.result);
     };
     reader.readAsDataURL(event.target.files[0]);
+
+  //   if (file != ".png" ) {
+  //     window.alert("File does not support. You must use .png or .jpg ");
+  //     return false;
+  //  }
+  //  if (file.size > 10e6) {
+  //    window.alert("Please upload a file smaller than 10 MB");
+  //    return false;
+  //  }
+   
   };
 
 
@@ -64,7 +77,9 @@ const Modeling = () => {
                 <input className="btn btn-secondary" 
                       id="fileInput" 
                       name="file" type="file" 
-                      onChange={fileChangedHandler} />
+                      inputProps={{ accept: 'image/*' }}
+                      onChange={fileChangedHandler} 
+                />
                
                 {/* <button className="btn btn-primary" style={{float:"left", margin: "0px"}}
                           id="renderButton">
@@ -75,8 +90,6 @@ const Modeling = () => {
                         id="renderButton">
                   Render 3D Model
                 </button>
-
-                
               
               </div>
             </div>

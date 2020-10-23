@@ -1,6 +1,6 @@
 const util = require('util')
 const gc = require('../config/')
-const bucket = gc.bucket('all-might-2')
+const bucket = gc.bucket('symmetry-bucket')
 
 const { format } = util
 

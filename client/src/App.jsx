@@ -1,19 +1,21 @@
-import React, { Component } from 'react'
-import Navigation from './components/navigation';
-import Header from './components/header';
-import About from './components/about';
-import Modeling from './components/modeling';
-import Rend from './components/rend';
-import Resources from './components/resources';
-import Team from './components/Team';
-import JsonData from './data/data.json';
+import React, { Component } from "react";
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
+import Navigation from "./components/navigation";
+import Header from "./components/header";
+import About from "./components/about";
+import Modeling from "./components/modeling";
+import Resources from "./components/resources";
+import Team from "./components/Team";
+import Upload from "./components/upload";
+import Search from "./components/search";
+import JsonData from "./data/data.json";
 
 export class App extends Component {
   state = {
-    landingPageData: {},
-  }
+    landingPageData: {}
+  };
   getlandingPageData() {
-    this.setState({landingPageData : JsonData})
+    this.setState({ landingPageData: JsonData });
   }
 
   componentDidMount() {
@@ -23,16 +25,24 @@ export class App extends Component {
   render() {
     return (
       <div>
-        <Navigation />
-        <Header data={this.state.landingPageData.Header} />
-        <About data={this.state.landingPageData.About} />
-        <Modeling data={this.state.landingPageData.Modeling} />
-        <Rend data={this.state.landingPageData.Rend} />
-        <Resources data={this.state.landingPageData.Resources} /> 
-        <Team data={this.state.landingPageData.Team} />
-    
-      </div>
-    )
+  <Route component={Navigation} />
+  <Switch>
+    <Route path="/upload" component={Upload} />
+    <Route path="/search" component={Search} />
+    <Route
+      render={(routeProps) => (
+        <>
+          <Header {...routeProps} data={this.state.landingPageData.Header} />
+          <About {...routeProps} data={this.state.landingPageData.About} />
+          <Modeling {...routeProps} data={this.state.landingPageData.Modeling} />
+          <Resources {...routeProps} data={this.state.landingPageData.Resources} />
+          <Team {...routeProps} data={this.state.landingPageData.Team} />
+        </>
+      )}
+    />
+  </Switch>
+</div>
+    );
   }
 }
 

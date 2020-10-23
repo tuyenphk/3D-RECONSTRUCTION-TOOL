@@ -12,6 +12,9 @@ npm install
 npm i react-router-dom
 npm install --save react-router
 npm install axios
+npm install react-hooks
+npm install react-router-hash-link
+npm install react-bootstrap
 npm install typescript
 npm install three
 npm install three-obj-mtl-loader

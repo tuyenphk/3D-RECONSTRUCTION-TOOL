@@ -224,7 +224,7 @@ header .intro-text {
 }
 /* About Section */
 #about {
-	padding: 100px 0;
+	padding: 50px;
 }
 
 #about h1 {
@@ -326,7 +326,17 @@ header .intro-text {
 
 /*Upload*/
 #upload{
-	padding-top: 30px;
+	display: inline-block;
+	border: 2px solid black;
+	padding: 50px 70px;
+	background-color: white;
+	margin-left: 50px;
+	margin-right: 50px;
+	margin-top: 30px;
+}
+
+#upload container{
+	margin-top: 10px;;
 }
 
 #upload h3{
@@ -337,4 +347,5 @@ header .intro-text {
 /*Search*/
 #search{
 	padding-top: 30px;
+	
 }

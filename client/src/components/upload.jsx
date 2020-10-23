@@ -4,6 +4,11 @@ import axios from 'axios';
 const Upload = () => {
   const [file, setFile] = useState(null);
 
+  const filterBySize = (file) => {
+    //filter out files larger than 5MB
+    return file.size < 5242880;
+  };
+
   const fileChangedHandler = event => {
     let file = event.target.files[0];
     let reader = new FileReader();
@@ -70,13 +75,14 @@ const Upload = () => {
         <div className="container">
           <div className="row">
             <div className="col-xs-12 col-md-8"> 
-              <div className="modeling-text">
+              <div className="upload-text">
                 <h3>Upload a 2D image to get a 3D model</h3>        
                 
                 <input className="btn btn-secondary" 
                       id="fileInput" 
                       name="file" type="file" 
                       inputProps={{ accept: 'image/*' }}
+                      fileFilter={filterBySize}
                       onChange={fileChangedHandler} 
                 />
                

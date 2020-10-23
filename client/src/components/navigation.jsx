@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { HashLink } from "react-router-hash-link";
 
 export class Navigation extends Component {
   render() {
@@ -18,9 +19,9 @@ export class Navigation extends Component {
               <span className="icon-bar"></span>{" "}
               <span className="icon-bar"></span>{" "}
             </button>
-            <a className="navbar-brand page-scroll" href="#page-top">
-              3D RECONSTRUCTION TOOL
-            </a>{" "}
+            <HashLink className="navbar-brand page-scroll" to="/#page-top">
+  3D RECONSTRUCTION TOOL
+</HashLink>{" "}
           </div>
 
           <div
@@ -29,29 +30,29 @@ export class Navigation extends Component {
           >
             <ul className="nav navbar-nav navbar-right">
               <li>
-                <a href="/" className="page-scroll">
-                  Home
-                </a>
+              <HashLink to="/#page-top" className="page-scroll">
+                Home
+              </HashLink>
               </li>
               <li>
-                <a href="#about" className="page-scroll">
-                  About
-                </a>
+              <HashLink to="/#about" className="page-scroll">
+              about
+            </HashLink>
               </li>
               <li>
-                <a href="#modeling" className="page-scroll">
-                  Modeling
-                </a>
+              <HashLink to="/#modeling" className="page-scroll">
+  Modeling
+</HashLink>
               </li>
               <li>
-                <a href="#resources" className="page-scroll">
-                  Resources
-                </a>
+              <HashLink to="/#resource" className="page-scroll">
+  Resources
+</HashLink>
               </li>
               <li>
-                <a href="#team" className="page-scroll">
-                  Team
-                </a>
+              <HashLink to="/#team" className="page-scroll">
+  Team
+</HashLink>
               </li>
              
             </ul>

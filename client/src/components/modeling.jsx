@@ -1,104 +1,74 @@
-import React, {Component, useState} from 'react';
-import axios from 'axios';
+import React, {Component} from 'react';
+import {Button} from 'react-bootstrap'
 
-const Modeling = () => {
-  const [file, setFile] = useState(null);
-
-  const fileChangedHandler = event => {
-    let file = event.target.files[0];
-    let reader = new FileReader();
-
-    console.log(file);
-    reader.onload = function(e) {
-      setFile(e.target.result);
-    };
-    reader.readAsDataURL(event.target.files[0]);
-
-  //   if (file != ".png" ) {
-  //     window.alert("File does not support. You must use .png or .jpg ");
-  //     return false;
-  //  }
-  //  if (file.size > 10e6) {
-  //    window.alert("Please upload a file smaller than 10 MB");
-  //    return false;
-  //  }
-   
-  };
-
-
-//   uploadHandler = async (event) => { 
-//     event.preventDefault() 
-//     const data = new FormData() 
-//     data.append('image', 
-//     this.state.selectedFile) 
-//     await axios.post("http://localhost:9001/uploads", 
-//     data, { }).then(res => { 
-//     // then print response status 
-//     console.log(res.statusText) 
-//     }).catch(error => 
-//     console.log(error)) 
-// }
-
-  // uploadHandler = event => {
-  //   let formdata = new FormData()
-  //   formdata.append('image', this.state.selectedFile)
-  //   axios({
-  //     url: 'http://localhost:8000/upload',
-  //     method: "POST",
-  //     headers: {
-  //       authorization: "your token"
-  //     },
-  //     data: formdata
-  //   }). then ((res)=>{
-
-  //   })
-  // }
-
-  // uploadHandler = event => {
-  //   event.preventDefault()
-  //   const data = new FormData() 
-  //   data.append('image', this.state.selectedFile)
-  //   axios.post("http://localhost:9001/uploads", data, { 
-  //   })
-  //     .then(res => { // then print response status
-  //       console.log(res.statusText)
-  //     }).catch(error => console.log(error))
-  //   }
-  
+export class Modeling extends Component {
+  uploadButton = (event) =>{
+    event.preventDefault();
+    this.props.history.push({
+      pathname: "/upload"
+    })
+  }
+  render() {
     return (
       <div id="modeling">
         <div className="container">
           <div className="row">
-            <div className="col-xs-12 col-md-8"> 
-              <div className="modeling-text">
-                <h2>3D MODELING</h2>
-                <h3>Upload a 2D image to get a 3D model</h3>        
+          
+              <div className="about-text">
+              <h2>MODELING</h2>
                 
-                <input className="btn btn-secondary" 
-                      id="fileInput" 
-                      name="file" type="file" 
-                      inputProps={{ accept: 'image/*' }}
-                      onChange={fileChangedHandler} 
-                />
-               
-                {/* <button className="btn btn-primary" style={{float:"left", margin: "0px"}}
-                          id="renderButton">
-                  Upload
-                </button> */}
-             
-                <button className="btn btn-primary" style={{float:"left", marginLeft: "10px", marginBottom: "10px"}} 
-                        id="renderButton">
-                  Render 3D Model
-                </button>
               
-              </div>
             </div>
           </div>
-          <img src={file} alt={""} width="400" height="400" text-align="left" style={{display:'block'}} />
-        </div>
+      <div className=" wow fadeInUp slow">
+          <div className="row pt-5 justify-content-center">
+              <div className="col text-center">
+                  <h1><b>Pick what's right for you </b></h1>
+              </div>
+          </div>
       </div>
-    )
-  }
+      <div class="row p-5 p-md-0 pt-md-5 justify-content-around">
+                <div class="col-md-5 mb-4 m-md-0 ml-md-5 modern-card card card-body shadow text-center wow fadeIn slow" data-wow-delay="0.2s">
+                    <h2 class="mb-3 blue"><b>A 3D model from a 2D floorplan.</b></h2>
+                    <p class="lead">
+                        No more manual 3D modeling: just upload a 2D floorplan and be amazed by the results!
+                    </p>
 
+                    <ul class="lead">
+                        <li><b>Perfect for:</b></li>
+                        <li>Home Renovators</li>
+                        <li>Construction Workers</li>
+                        <li>Architects</li>
+                    </ul>
+
+                    <Button type="button" class="btn btn-primary go-button" onClick={this.uploadButton}>
+                     Go upload
+                    </Button>
+                </div>
+
+                <div class="col-md-5 mr-md-5 modern-card card card-body shadow text-center wow fadeIn slow" data-wow-delay="0.4s">
+                    <h2 class="mb-3 blue"><b>A virtual tour from a 3D model.</b></h2>
+                    <p class="lead">
+                        Easily give and take virtual tours with the 3D model we generate from your pictures!
+                    </p>
+
+                    <ul class="lead">
+                        <li><b>Perfect for:</b></li>
+                        <li>Realtors</li>
+                        <li>Sellers and Buyers</li>
+                        <li>Inspectors and Interior Designers</li>
+                    </ul>
+
+                    <button type="button" class="btn btn-primary go-button" onclick="window.location.href = 'tour.html';">
+            Go!
+          </button>
+      </div>
+    
+    </div>
+    </div>
+    </div>
+    );
+    }
+}
 
 export default Modeling;

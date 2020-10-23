@@ -66,12 +66,11 @@ const Upload = () => {
   //   }
   
     return (
-      <div id="modeling">
+      <div id="upload">
         <div className="container">
           <div className="row">
             <div className="col-xs-12 col-md-8"> 
               <div className="modeling-text">
-                
                 <h3>Upload a 2D image to get a 3D model</h3>        
                 
                 <input className="btn btn-secondary" 

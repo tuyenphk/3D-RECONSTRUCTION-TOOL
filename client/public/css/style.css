@@ -256,7 +256,7 @@ header .intro-text {
 }
 /* Modeling Section */
 #modeling{
-	padding-bottom: 300px;
+	padding: 50px;
 }
 
 #modeling h2 {
@@ -275,6 +275,31 @@ header .intro-text {
 	left: 0;
 }
 
+.text-box{
+	text-align: center;
+	display:inline-block;
+	border: 2px solid black;
+	padding: 30px 50px;
+	background-color: white
+}
+
+.text-box h3{
+	font-size: 30px;
+	font-weight: 10px;
+	font-family: Comic Sans MS, Comic Sans, cursive;
+	margin-bottom: 20px;
+}
+
+.block {
+	display: block;
+	width: 100%;
+	border: none;
+	background-color: #096cee;
+	padding: 14px 28px;
+	font-size: 16px;
+	cursor: pointer;
+	text-align: center;
+  }
 
 /* Resources Section */
 #resources{
@@ -297,4 +322,19 @@ header .intro-text {
 #team .thumbnail .caption {
 	padding: 10px 0 0 0;
 	color: #888;
+}
+
+/*Upload*/
+#upload{
+	padding-top: 30px;
+}
+
+#upload h3{
+	font-family: URW Chancery L, cursive;
+	font-size: 30px;
+}
+
+/*Search*/
+#search{
+	padding-top: 30px;
 }

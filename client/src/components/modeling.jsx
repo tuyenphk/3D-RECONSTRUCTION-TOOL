@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button} from 'react-bootstrap'
+import {Button, Row, Col} from 'react-bootstrap'
 
 export class Modeling extends Component {
   uploadButton = (event) =>{
@@ -8,65 +8,67 @@ export class Modeling extends Component {
       pathname: "/upload"
     })
   }
+
+  searchButton = (event) =>{
+    event.preventDefault();
+    this.props.history.push({
+      pathname: "/search"
+    })
+  }
+
   render() {
     return (
       <div id="modeling">
         <div className="container">
           <div className="row">
-          
               <div className="about-text">
-              <h2>MODELING</h2>
-                
-              
+              <h2>MODELING</h2>               
             </div>
           </div>
-      <div className=" wow fadeInUp slow">
+        <div className=" wow fadeInUp slow">
           <div className="row pt-5 justify-content-center">
               <div className="col text-center">
                   <h1><b>Pick what's right for you </b></h1>
               </div>
           </div>
-      </div>
-      <div class="row p-5 p-md-0 pt-md-5 justify-content-around">
-                <div class="col-md-5 mb-4 m-md-0 ml-md-5 modern-card card card-body shadow text-center wow fadeIn slow" data-wow-delay="0.2s">
-                    <h2 class="mb-3 blue"><b>A 3D model from a 2D floorplan.</b></h2>
-                    <p class="lead">
-                        No more manual 3D modeling: just upload a 2D floorplan and be amazed by the results!
+        </div>
+       <Row>
+            <Col md = {6}>
+              <div className="text-box" >
+                  <h3>Render 3D Model from 2D Image</h3>
+                    <p className="lead">
+                        <p>Upload a 2D space image and be amazed by the results</p> 
+                        <b>Perfect for:</b>
+                        <p>Researchers</p>
+                        <p>Scientists</p>
+                        <p>Educational specialists</p>
                     </p>
-
-                    <ul class="lead">
-                        <li><b>Perfect for:</b></li>
-                        <li>Home Renovators</li>
-                        <li>Construction Workers</li>
-                        <li>Architects</li>
-                    </ul>
-
-                    <Button type="button" class="btn btn-primary go-button" onClick={this.uploadButton}>
+                    <Button type="button" className="block" onClick={this.uploadButton}>
                      Go upload
                     </Button>
-                </div>
+              </div>
+            </Col>
 
-                <div class="col-md-5 mr-md-5 modern-card card card-body shadow text-center wow fadeIn slow" data-wow-delay="0.4s">
-                    <h2 class="mb-3 blue"><b>A virtual tour from a 3D model.</b></h2>
-                    <p class="lead">
-                        Easily give and take virtual tours with the 3D model we generate from your pictures!
+            <Col md={6}
+>               <div className="text-box">
+                  <h3>Search 3D model from our database</h3>
+                    <p className="lead">
+                        <p>Be amazed with our 3D database and feel free to use it into your project</p> 
+                        <b>Perfect for:</b>
+                        <p>Researchers</p>
+                        <p>Scientists</p>
+                        <p>Educational specialists</p>
                     </p>
-
-                    <ul class="lead">
-                        <li><b>Perfect for:</b></li>
-                        <li>Realtors</li>
-                        <li>Sellers and Buyers</li>
-                        <li>Inspectors and Interior Designers</li>
-                    </ul>
-
-                    <button type="button" class="btn btn-primary go-button" onclick="window.location.href = 'tour.html';">
-            Go!
-          </button>
+                    <Button type="button" className="block" onClick={this.searchButton}>
+                     Go search
+                    </Button>
+              </div>
+            </Col>    
+     </Row>
+                
+      </div>
       </div>
     
-    </div>
-    </div>
-    </div>
     );
     }
 }

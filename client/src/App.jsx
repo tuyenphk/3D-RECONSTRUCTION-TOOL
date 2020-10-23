@@ -7,6 +7,7 @@ import Modeling from "./components/modeling";
 import Resources from "./components/resources";
 import Team from "./components/Team";
 import Upload from "./components/upload";
+import Search from "./components/search";
 import JsonData from "./data/data.json";
 
 export class App extends Component {
@@ -27,6 +28,7 @@ export class App extends Component {
   <Route component={Navigation} />
   <Switch>
     <Route path="/upload" component={Upload} />
+    <Route path="/search" component={Search} />
     <Route
       render={(routeProps) => (
         <>

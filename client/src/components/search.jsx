@@ -94,9 +94,10 @@ class Search extends  React.Component {
 
                     {/*Search Input*/}
                     <label className="search-label" htmlFor="search-input">
+                   
                         <input
                             type="text"
-                            value=""
+                            value={query}
                             id="search-input"
                             placeholder="Search..."
                             onChange={this.handleOnInputChange}

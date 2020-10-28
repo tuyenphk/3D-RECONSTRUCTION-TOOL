@@ -1,8 +1,13 @@
 /**
  * TODO(developer): Uncomment the following lines before running the sample.
  */
- const bucketName = 'symmetry-bucket';
- const filename = './uploads/hello.txt';
+
+// take in relative path as input
+var args = process.argv.slice(2);
+const fileinput = args[0];
+
+const bucketName = 'symmetry-bucket';
+const filename = fileinput;
 
 // Imports the Google Cloud client library
 const {Storage} = require('@google-cloud/storage');

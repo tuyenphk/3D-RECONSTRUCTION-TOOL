@@ -5,6 +5,7 @@ import Header from "./components/header";
 import About from "./components/about";
 import Modeling from "./components/modeling";
 import Resources from "./components/resources";
+import Rend from "./components/rend";
 import Team from "./components/Team";
 import Upload from "./components/upload";
 import Search from "./components/search";
@@ -35,6 +36,7 @@ export class App extends Component {
           <Header {...routeProps} data={this.state.landingPageData.Header} />
           <About {...routeProps} data={this.state.landingPageData.About} />
           <Modeling {...routeProps} data={this.state.landingPageData.Modeling} />
+          <Rend {...routeProps} data={this.state.landingPageData.Rend} />
           <Resources {...routeProps} data={this.state.landingPageData.Resources} />
           <Team {...routeProps} data={this.state.landingPageData.Team} />
         </>

@@ -1,87 +1,76 @@
 import React, {Component} from 'react';
-import axios from 'axios';
+import {Button, Row, Col} from 'react-bootstrap'
 
-export class modeling extends Component {
-  constructor(props){
-    super(props);
-    this.state={
-      selectedFile: ''
-    }
-  }
-
-  fileChangedHandler = event => {
-    this.setState({
-      selectedFile: event.target.files[0],
+export class Modeling extends Component {
+  uploadButton = (event) =>{
+    event.preventDefault();
+    this.props.history.push({
+      pathname: "/upload"
     })
   }
 
-  uploadHandler = async (event) => { 
-    event.preventDefault() 
-    const data = new FormData() 
-    data.append('image', 
-    this.state.selectedFile) 
-    await axios.post("http://localhost:9001/uploads", 
-    data, { }).then(res => { 
-    // then print response status 
-    console.log(res.statusText) 
-    }).catch(error => 
-    console.log(error)) 
-}
+  searchButton = (event) =>{
+    event.preventDefault();
+    this.props.history.push({
+      pathname: "/search"
+    })
+  }
 
-  // uploadHandler = event => {
-  //   let formdata = new FormData()
-  //   formdata.append('image', this.state.selectedFile)
-  //   axios({
-  //     url: 'http://localhost:8000/upload',
-  //     method: "POST",
-  //     headers: {
-  //       authorization: "your token"
-  //     },
-  //     data: formdata
-  //   }). then ((res)=>{
-
-  //   })
-  // }
-
-  // uploadHandler = event => {
-  //   event.preventDefault()
-  //   const data = new FormData() 
-  //   data.append('image', this.state.selectedFile)
-  //   axios.post("http://localhost:9001/uploads", data, { 
-  //   })
-  //     .then(res => { // then print response status
-  //       console.log(res.statusText)
-  //     }).catch(error => console.log(error))
-  //   }
-  render(){
+  render() {
     return (
       <div id="modeling">
         <div className="container">
           <div className="row">
-            <div className="col-xs-12 col-md-8"> 
-              <div className="modeling-text">
-                <h2>3D MODELING</h2>
-                <h3>Upload a 2D image to get a 3D model</h3>         
-                <input className="btn btn-secondary" type="file" onChange={this.fileChangedHandler} />
-              <a>
-                <button className="btn btn-primary" onClick={this.uploadHandler} id="renderButton">
-                  Upload
-                </button>
-              </a>{" "}
-              <a>
-                <button className="btn btn-primary" onClick={this.renderHandler} id="renderButton">
-                  Render 3D Model
-                </button>
-              </a>{" "}
-
-             
-              </div>
+              <div className="about-text">
+              <h2>MODELING</h2>               
             </div>
           </div>
+        <div className=" wow fadeInUp slow">
+          <div className="row pt-5 justify-content-center">
+              <div className="col text-center">
+                  <h1><b>Pick what's right for you </b></h1>
+              </div>
+          </div>
         </div>
+       <Row>
+            <Col md = {6}>
+              <div className="text-box" >
+                  <h3>Render 3D Model from 2D Image</h3>
+                    <p className="lead">
+                        <p>Upload a 2D space image and be amazed by the results</p> 
+                        <b>Perfect for:</b>
+                        <p>Researchers</p>
+                        <p>Scientists</p>
+                        <p>Educational specialists</p>
+                    </p>
+                    <Button type="button" className="block" onClick={this.uploadButton}>
+                     Go upload
+                    </Button>
+              </div>
+            </Col>
+
+            <Col md={6}
+>               <div className="text-box">
+                  <h3>Search 3D model from our database</h3>
+                    <p className="lead">
+                        <p>Be amazed with our 3D database and feel free to use it into your project</p> 
+                        <b>Perfect for:</b>
+                        <p>Researchers</p>
+                        <p>Scientists</p>
+                        <p>Educational specialists</p>
+                    </p>
+                    <Button type="button" className="block" onClick={this.searchButton}>
+                     Go search
+                    </Button>
+              </div>
+            </Col>    
+     </Row>
+                
       </div>
-    )
-  }
+      </div>
+    
+    );
+    }
 }
 
-export default modeling
+export default Modeling;

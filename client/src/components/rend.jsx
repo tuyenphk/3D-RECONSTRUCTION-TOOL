@@ -109,7 +109,21 @@ export class Rend extends Component {
         }
       );
     });
+  }
 
+  componentWillUnmount() {
+    this.stop();
+    this.mount.removeChild(this.renderer.domElement);
+  }
+  start = () => {
+    if (!this.frameId) {
+      this.frameId = requestAnimationFrame(this.animate);
+    }
+  };
+  stop = () => {
+    cancelAnimationFrame(this.frameId);
+  };
+  animate = () => {
     // Set up zoom behavior
     const zoom = d3.behavior.zoom()
       .scaleExtent([10, 300])
@@ -163,23 +177,7 @@ export class Rend extends Component {
     view.on('dblclick.zoom', null);
 
     // Sync d3 zoom with camera z position
-    zoom.scale(view, 125);
-
-  }
-
-  componentWillUnmount() {
-    this.stop();
-    this.mount.removeChild(this.renderer.domElement);
-  }
-  start = () => {
-    if (!this.frameId) {
-      this.frameId = requestAnimationFrame(this.animate);
-    }
-  };
-  stop = () => {
-    cancelAnimationFrame(this.frameId);
-  };
-  animate = () => {
+    zoom.scaleTo(view, 125);
 
     this.renderScene();
     this.frameId = window.requestAnimationFrame(this.animate);
@@ -202,24 +200,24 @@ export class Rend extends Component {
     );
   }
 
-// From https://github.com/anvaka/three.map.control, used for panning
- getCurrentScale() {
-  var vFOV = this.camera.fov * Math.PI / 180
-  var scale_height = 2 * Math.tan( vFOV / 2 ) * this.camera.position.z
-  var currentScale = this.height / scale_height
-  return currentScale
-};
-
-// Point generator function
- phyllotaxis(radius) {
-  const theta = Math.PI * (3 - Math.sqrt(5));
-  return function(i) {
-    const r = radius * Math.sqrt(i), a = theta * i;
-    return [
-      this.width / 2 + r * Math.cos(a) - this.width / 2,
-      this.height / 2 + r * Math.sin(a) - this.height / 2
-    ];
+  // From https://github.com/anvaka/three.map.control, used for panning
+  getCurrentScale() {
+    var vFOV = this.camera.fov * Math.PI / 180
+    var scale_height = 2 * Math.tan(vFOV / 2) * this.camera.position.z
+    var currentScale = this.height / scale_height
+    return currentScale
   };
-};
+
+  // Point generator function
+  phyllotaxis(radius) {
+    const theta = Math.PI * (3 - Math.sqrt(5));
+    return function (i) {
+      const r = radius * Math.sqrt(i), a = theta * i;
+      return [
+        this.width / 2 + r * Math.cos(a) - this.width / 2,
+        this.height / 2 + r * Math.sin(a) - this.height / 2
+      ];
+    };
+  };
 }
 export default Rend;

@@ -24,7 +24,6 @@ export class Rend extends Component {
     this.camera.position.set(0, 5, 10);
     this.camera.lookAt(new THREE.Vector3(0, 0, 0));
 
-
     //Camera Controls
     const controls = new OrbitControls(this.camera, this.renderer.domElement);
     controls.enableDamping = true;
@@ -125,19 +124,19 @@ export class Rend extends Component {
   };
   animate = () => {
     // Set up zoom behavior
-    const zoom = d3.behavior.zoom()
+    const zoom = d3.zoom()
       .scaleExtent([10, 300])
       .on('zoom', () => {
-        const event = d3.event;
-        if (event.sourceEvent) {
+        //const event = d3.event;
+        if (d3.sourceEvent) {
 
           // Get z from D3
-          const new_z = event.transform.k;
+          const new_z = d3.transform.k;
 
           if (new_z !== this.camera.position.z) {
 
             // Handle a zoom event
-            const { clientX, clientY } = event.sourceEvent;
+            const { clientX, clientY } = d3.sourceEvent;
 
             // Project a vector from current mouse position and zoom level
             // Find the x and y coordinates for where that vector intersects the new
@@ -159,7 +158,7 @@ export class Rend extends Component {
           } else {
 
             // Handle panning
-            const { movementX, movementY } = event.sourceEvent;
+            const { movementX, movementY } = d3.sourceEvent;
 
             // Adjust mouse movement by current scale and set camera
             const current_scale = this.getCurrentScale();
@@ -190,7 +189,7 @@ export class Rend extends Component {
     return (
       <div
         style={{
-          width: "800px", height: "800px",
+         width: "800px", height: "800px",
           margin: "auto",
         }}
         ref={mount => {

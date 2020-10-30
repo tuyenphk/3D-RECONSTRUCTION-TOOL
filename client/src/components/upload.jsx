@@ -1,5 +1,4 @@
 import React, {Component, useState} from 'react';
-import axios from 'axios';
 
 const Upload = () => {
   const [file, setFile] = useState(null);
@@ -92,7 +91,7 @@ const Upload = () => {
                 </button> */}
              
                 <button className="btn btn-primary" style={{float:"left", marginLeft: "10px", marginBottom: "10px"}} 
-                        id="renderButton">
+                        id="renderButton" >
                   Render 3D Model
                 </button>
               

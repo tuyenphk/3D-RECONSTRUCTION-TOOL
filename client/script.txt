@@ -1,0 +1,4 @@
+cd client
+ls
+npm install --save 
+npm start

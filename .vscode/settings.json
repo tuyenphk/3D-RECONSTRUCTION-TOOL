@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "cSpell.ignoreWords": [
     "originalname"
   ]
+=======
+    "git.ignoreLimitWarning": true
+>>>>>>> b397509def0ebbcc633c0904714344c3ff85d924
 }

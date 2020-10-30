@@ -1,6 +1,6 @@
 const util = require('util')
-const gc = require('../config/')
-const bucket = gc.bucket('symmetry-bucket')
+//const gc = require('../config/')
+//const bucket = gc.bucket('symmetry-bucket')
 
 const { format } = util
 
@@ -16,19 +16,23 @@ const { format } = util
 const uploadImage = (file) => new Promise((resolve, reject) => {
   const { originalname, buffer } = file
 
-  const blob = bucket.file(originalname.replace(/ /g, "_"))
+  //const blob = bucket.file(originalname.replace(/ /g, "_"))
   const blobStream = blob.createWriteStream({
     resumable: false
   })
 
+
   blobStream.on('finish', () => {
     const publicUrl = format(
-      `https://storage.googleapis.com/${bucket.name}/${blob.name}`
+      //`https://storage.googleapis.com/${bucket.name}/${blob.name}`
+	'./uploads'
     )
     resolve(publicUrl)
   })
   .on('error', () => {
     reject(`Unable to upload image, something went wrong`)
+      console.log("error, could not upload image")
+
   })
   .end(buffer)
 

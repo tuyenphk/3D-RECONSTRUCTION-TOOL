@@ -1,7 +1,7 @@
+
 const express = require('express')
 const bodyParser = require('body-parser')
 const multer = require('multer')
-
 const uploadImage = require('./helpers/helpers')
 
 const app = express()
@@ -14,16 +14,19 @@ const multerMid = multer({
   },
 });
 
+
 app.disable('x-powered-by')
 app.use(multerMid.single('file'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
 app.post('/uploads', async (req, res, next) => {
-  try {
+    console.log("requesting file")
+    try {
     const myFile = req.file
-    const imageUrl = await uploadImage(myFile)
-
+      console.log("requesting file")
+      const imageUrl = await uploadImage(myFile)
+     
     res
       .status(200)
       .json({
@@ -31,7 +34,8 @@ app.post('/uploads', async (req, res, next) => {
         data: imageUrl
       })
   } catch (error) {
-    next(error)
+      
+      next(error)
   }
 })
 
@@ -47,3 +51,22 @@ app.listen(8000, () => {
   console.log('app now listening for requests!!!')
 })
 
+
+/*
+const axios = require('axios');
+const fs = require('fs');
+
+var config = {
+    responseType: 'stream'
+};
+
+let url = 'http://34.105.28.90:8888/#modeling';
+
+async function getImage() {
+
+    let resp = await axios.get(url, config);
+    resp.data.pipe(fs.createWriteStream('image.jpg'));
+}
+
+getImage();
+*/

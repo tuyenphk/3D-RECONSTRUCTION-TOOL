@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import * as THREE from "three";
 import { MTLLoader, OBJLoader } from "three-obj-mtl-loader";
+import * as d3 from 'd3'
+//import 'd3-selection-multi'
 //import OrbitControls from "three-orbitcontrols";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
@@ -19,8 +21,8 @@ export class Rend extends Component {
 
     //add Camera
     this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    this.camera.position.z = 10;
-    this.camera.position.y = 5;
+    this.camera.position.set(0, 5, 10);
+    this.camera.lookAt(new THREE.Vector3(0, 0, 0));
 
     //Camera Controls
     const controls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -49,7 +51,6 @@ export class Rend extends Component {
   }
 
   addModels() {
-    // -----Step 1--------
     const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
     const material = new THREE.MeshBasicMaterial({
       color: "#0F0"
@@ -57,7 +58,6 @@ export class Rend extends Component {
     this.cube = new THREE.Mesh(geometry, material);
     //this.scene.add(this.cube);
 
-    // -----Step 2--------
     //LOAD TEXTURE and on completion apply it on SPHERE
     new THREE.TextureLoader().load(
       "https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
@@ -76,7 +76,9 @@ export class Rend extends Component {
       }
     );
 
-    // -----Step 4--------
+    //Rotate Models
+    if (this.cube) this.cube.rotation.y += 0.01;
+
     //Loading 3d Models
     //Loading Material First
     var mtlLoader = new MTLLoader();
@@ -121,9 +123,6 @@ export class Rend extends Component {
     cancelAnimationFrame(this.frameId);
   };
   animate = () => {
-    // -----Step 3--------
-    //Rotate Models
-    if (this.cube) this.cube.rotation.y += 0.01;
 
     this.renderScene();
     this.frameId = window.requestAnimationFrame(this.animate);
@@ -136,7 +135,7 @@ export class Rend extends Component {
     return (
       <div
         style={{
-          width: "800px", height: "800px",
+         width: "800px", height: "800px",
           margin: "auto",
         }}
         ref={mount => {

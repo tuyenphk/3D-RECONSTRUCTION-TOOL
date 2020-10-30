@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Loader from './loader.gif';
 import {Row, Col} from 'react-bootstrap'
+import Rend from './rend'
 
 class Search extends  React.Component {
 	constructor( props ) {
@@ -118,10 +119,8 @@ class Search extends  React.Component {
 
                 </Col>
 
-                <Col md = {6}>
-                    <div className="display-render">
-                    <h1>This place to display 3D model</h1>
-                    </div>
+                <Col md = {6}> 
+                    <Rend/>
                 </Col>
                 </Row>
                         </div>

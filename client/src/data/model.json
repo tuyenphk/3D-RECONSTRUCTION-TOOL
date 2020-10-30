@@ -1,0 +1,43 @@
+[
+    {
+      "name": "Sample 1",
+      "image": "/img/search/crab-nebula-2.png"
+    },
+    {
+      "name": "Sample 2",
+      "image": "/img/search/crab-nebula.png"
+    },
+    {
+      "name": "Sample 3",
+      "image": "/img/search/ghost-nebula.png"
+    },
+    {
+      "name": "Sample 4",
+      "image": "/img/search/sample-nebula-2.png"
+    },
+    {
+      "name": "Sample 5",
+      "image": "/img/search/sample-nebula.png"
+    },
+    {
+        "name": "Sample 6",
+        "image": "/img/search/car.png"
+    },
+    {
+        "name": "Sample 7",
+        "image": "/img/search/lamp.png"
+    },
+    {
+        "name": "Sample 8",
+        "image": "/img/search/chair.png"
+    },
+    {
+        "name": "Sample 9",
+        "image": "/img/search/chair.png"
+    },
+    {
+        "name": "Sample 10",
+        "image": "/img/search/table.png"
+    }
+]
+  

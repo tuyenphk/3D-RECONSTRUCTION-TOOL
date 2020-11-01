@@ -14,9 +14,12 @@ class Search extends Component {
   };
 
   renderModel = model => {
-    
+    function handleClick() {
+      console.log('in cardClick'+model.name);
+  } 
+
     return (
-      <div className="col-md-3" style={{ marginTop: "20px" }}>
+      <div className="col-md-3" style={{ marginTop: "20px" }} onClick={handleClick}>
         <Card>
           <CardBody>
             <p className=""
@@ -33,12 +36,13 @@ class Search extends Component {
               {model.name.substring(0, 15)}
               {model.name.length > 15 && "..."}
             </CardTitle>
-          </CardBody>
+            </CardBody>
         </Card>
       </div>
     );
   };
 
+  
   onchange = e => {
     this.setState({ search: e.target.value });
   };

@@ -90,12 +90,14 @@ const Upload = () => {
                 
                 <input className="btn btn-secondary" 
                   id="fileInput" 
-                  name="file" type="file" 
-                  inputProps={{ accept: 'image/*' }}
-                  fileFilter={filterBySize}
+                  type="file" 
+                  accept="image/*"
+                  // inputProps={{ accept: 'image/*' }}
+                  // fileFilter={filterBySize}
                   onChange={fileChangedHandler} 
                 />
-               
+                
+
                 <button className="btn btn-primary" style={{float:"left", margin: "0px"}}
                           id="renderButton" onChange={handleUpload}>
                   Upload

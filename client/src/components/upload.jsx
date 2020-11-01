@@ -29,6 +29,17 @@ const Upload = () => {
    
   };
 
+  const handleUpload = event =>{
+    event.preventDefault()
+    var formData = new FormData();
+      formData.append('photo', file);
+      fetch('http://localhost:9001/uploads/', {
+        method:'POST',
+         body: formData
+      }) 
+      .then(response => response.json())
+      .then(data => console.log(data));
+  }
 
 //   uploadHandler = async (event) => { 
 //     event.preventDefault() 
@@ -78,17 +89,17 @@ const Upload = () => {
                 <h3>Upload a 2D image to get a 3D model</h3>        
                 
                 <input className="btn btn-secondary" 
-                      id="fileInput" 
-                      name="file" type="file" 
-                      inputProps={{ accept: 'image/*' }}
-                      fileFilter={filterBySize}
-                      onChange={fileChangedHandler} 
+                  id="fileInput" 
+                  name="file" type="file" 
+                  inputProps={{ accept: 'image/*' }}
+                  fileFilter={filterBySize}
+                  onChange={fileChangedHandler} 
                 />
                
-                {/* <button className="btn btn-primary" style={{float:"left", margin: "0px"}}
-                          id="renderButton">
+                <button className="btn btn-primary" style={{float:"left", margin: "0px"}}
+                          id="renderButton" onChange={handleUpload}>
                   Upload
-                </button> */}
+                </button>
              
                 <button className="btn btn-primary" style={{float:"left", marginLeft: "10px", marginBottom: "10px"}} 
                         id="renderButton" >

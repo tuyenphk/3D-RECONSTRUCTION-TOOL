@@ -16,7 +16,11 @@ https://github.com/tuyenphk/3D-RECONSTRUCTION-TOOL/releases/tag/v1.0
 - Server & image bucket instantiated on Google Compute Engine
 - Sample 3D Model, housed in MODELING tab, with zoom in/out features and 360 viewing capability
 
+v2.0:
+- 
+
 # Install instruction
+
 To enjoy our application, follow those steps below:
 
 <strong>Client-side</Strong>
@@ -34,8 +38,9 @@ To enjoy our application, follow those steps below:
 
 You have two options to run this release:
 
-1. Dowload the github package and then in the client folder, you may start the web application by typing into the console: <strong>npm start</strong>. It will pop up the react web application in your browser and you can test our application.
-1. Go to this link http://34.105.28.90:8888/ 
+1. Dowload the github package and then in the client folder, install dependencies by <strong>npm install</strong> and you may start the web application by typing into the console: <strong>npm start</strong>. It will pop up the react web application in your browser and you can test our application.
+
+2. Go to this link http://34.105.28.90:8888/ to test our application.
 
 The website has several points of navigation: <strong>HOME, ABOUT, MODELING, RESOURCES, and TEAM.</strong>
 
@@ -43,11 +48,11 @@ In the <strong>HOME</strong> tab, you may view the front page.
 
 In the <strong>ABOUT</strong> tab, you may see our project description.
 
-In the <strong>MODELING</strong> tab, you may view a sample rendered 3D model, as well as click to navigate your local directory for images to upload.
-Upload functionality is midway in development, so this button is primarily used for file navigation only.
+In the <strong>MODELING</strong> tab, you have 2 options to choose:
+
+- <strong>GO UPLOAD</strong>: you can upload 2D image, accepted only image file (.png, .jpg, .jpeg) and the 2D image will be displayed here.
+- <strong>GO SEARCH</strong>: our database has 10 images so you can enter the key word to search this
 
 <strong>RESOURCES and TEAM</strong> are to contain miscellaneous information about the components of the project and its members.
 
-# Link to Source Code
 
-<strong>https://github.com/tuyenphk/3D-RECONSTRUCTION-TOOL</strong>

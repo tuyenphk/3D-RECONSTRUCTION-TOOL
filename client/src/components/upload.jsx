@@ -1,7 +1,13 @@
 import React, {Component, useState} from 'react';
 
 const Upload = () => {
-  const [file, setFile] = useState(null);
+  let [file, setFile] = useState(null);
+  /**
+   * Create a new state variable to hold the name of the
+   * file. This is needed since the browser does not retain
+   * the filename by default when uploading. 
+   */
+  let [filename, setFilename] = useState('');
 
   const filterBySize = (file) => {
     //filter out files larger than 5MB
@@ -10,6 +16,10 @@ const Upload = () => {
 
   const fileChangedHandler = event => {
     let file = event.target.files[0];
+    /**
+     * Capture filename
+     */
+    setFilename(file.name);
     let reader = new FileReader();
 
     console.log(file);
@@ -32,7 +42,12 @@ const Upload = () => {
   const handleUpload = event =>{
     event.preventDefault()
     var formData = new FormData();
-      formData.append('photo', file);
+    /**
+     * Append 2 keys to the request body: the file name
+     * and the file blob itself.
+     */
+      formData.append('fileblob', file);
+      formData.append('filename', filename);
       fetch('http://localhost:9001/uploads/', {
         method:'POST',
          body: formData

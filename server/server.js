@@ -23,8 +23,11 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 app.post('/uploads', async (req, res, next) => {
   try {
-    const myFile = req.file
-    const imageUrl = await uploadImage(myFile)
+    /**
+     * Pass the request body directly instead of the file attribute
+     * of the request object
+     */
+    const imageUrl = await uploadImage(req.body);
 
     res
       .status(200)

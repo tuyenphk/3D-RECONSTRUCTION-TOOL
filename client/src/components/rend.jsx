@@ -7,7 +7,14 @@ import * as d3 from 'd3'
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 export class Rend extends Component {
-
+  /*constructor(props){
+    super(props);
+    this.state = { 
+       objFileName : "./assets/plane.obj"
+         //, matFile = "https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+  }
+  }
+  */
   componentDidMount() {
     const width = this.mount.clientWidth;
     const height = this.mount.clientHeight;
@@ -56,11 +63,10 @@ export class Rend extends Component {
       color: "#0F0"
     });
     this.cube = new THREE.Mesh(geometry, material);
-    //this.scene.add(this.cube);
+    /*//this.scene.add(this.cube);
 
     //LOAD TEXTURE and on completion apply it on SPHERE
-    new THREE.TextureLoader().load(
-      "https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    new THREE.TextureLoader().load(this.matFile,
       texture => {
         //Update Texture
         this.cube.material.map = texture;
@@ -78,7 +84,7 @@ export class Rend extends Component {
 
     //Rotate Models
     if (this.cube) this.cube.rotation.y += 0.01;
-
+*/
     //Loading 3d Models
     //Loading Material First
     var mtlLoader = new MTLLoader();
@@ -89,8 +95,8 @@ export class Rend extends Component {
       //Load Object Now and Set Material
       var objLoader = new OBJLoader();
       objLoader.setMaterials(materials);
-      objLoader.load(
-        "./assets/plane.obj",
+      console.log("-in rend " + this.objFileName);
+      objLoader.load( "./assets/plane.obj",
         object => {
           this.freedomMesh = object;
           this.freedomMesh.position.setX(0.5); //or  this
@@ -114,14 +120,20 @@ export class Rend extends Component {
     this.stop();
     this.mount.removeChild(this.renderer.domElement);
   }
+
+
   start = () => {
     if (!this.frameId) {
       this.frameId = requestAnimationFrame(this.animate);
     }
   };
+
+
   stop = () => {
     cancelAnimationFrame(this.frameId);
   };
+
+
   animate = () => {
 
     this.renderScene();
@@ -131,7 +143,10 @@ export class Rend extends Component {
     if (this.renderer) this.renderer.render(this.scene, this.camera);
   };
 
+
+
   render() {
+    console.log("the props are:" + this.props);
     return (
       <div
         style={{

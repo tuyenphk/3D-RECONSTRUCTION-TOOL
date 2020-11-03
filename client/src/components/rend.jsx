@@ -7,9 +7,20 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 export class Rend extends Component {
   componentDidMount() {
     console.log("-in rend mounted props" + this.props.objFileName);
+
+    this.scene = new THREE.Scene();
+    //add lights etc.
+    this.sceneSetup();
+    //load models
+    this.addModels();
+    //render whole scene
+    this.renderScene();
+    //start animation
+    this.start();
+  }
+  sceneSetup() {
     const width = this.mount.clientWidth;
     const height = this.mount.clientHeight;
-    this.scene = new THREE.Scene();
 
     //Add Renderer
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -27,7 +38,9 @@ export class Rend extends Component {
     controls.enableDamping = true;
     controls.campingFactor = 0.25;
     controls.enableZoom = true;
-
+    this.addLights();
+  }
+  addLights() {
     //LIGHTS
     var lights = [];
     lights[0] = new THREE.PointLight(0x304ffe, 1, 0);
@@ -40,15 +53,7 @@ export class Rend extends Component {
     this.scene.add(lights[1]);
     this.scene.add(lights[2]);
     this.camera.add(new THREE.PointLight(0xffffff, 1, 0));
-
-    //Simple Box with WireFrame
-    this.addModels();
-
-    this.renderScene();
-    //start animation
-    this.start();
   }
-
   addModels() {
     //Loading 3d Models
     var objLoader = new OBJLoader();
@@ -78,13 +83,15 @@ export class Rend extends Component {
 
   componentDidUpdate() {
     console.log("-in rend ComponentDidUpdate to " + this.props.objFileName);
-    //this.removeEntity(); 
+   this.removeEntity();
+    //this.sceneSetup();
+    this.addLights();
     this.addModels();
-
     this.renderScene();
     //start animation
     this.start();
   }
+
   removeEntity() {
     while (this.scene.children.length > 0) {
       this.scene.remove(this.scene.children[0]);

@@ -32,16 +32,16 @@ To enjoy our application, follow those steps below:
 <strong>Server-side</Strong>
 1. change the directory to the backend folder: <strong>cd server</strong>
 2. install dependencie: <strong>npm install --save multer express cors body-parser @google-cloud/storage</strong>
-3. run the backend server: <strong>node index.js<strong>
+3. run the backend server: <strong>node index.js</strong>
 4. If you want to create the bucket on Google Cloud Storage, remember to dowload the json key file in APIs & Services/Credentials into the server/config folder. Also make change the bucket name in helpers/helpers.js, the project id and serviceKey in config/index.js
 
 # How to Use this Release
 
 You have two options to run this release:
 
-1. Dowload the github package and then in the client folder, install dependencies by <strong>npm install</strong> and you may start the web application by typing into the console: <strong>npm start</strong>. It will pop up the react web application in your browser and you can test our application.
-
-2. Go to this link http://34.105.28.90:8888/ to test our application.
+1. Dowload the github package and clone it into your local machine, follow the instruction above to run in bothe the client-side and server-side. It will pop up the react web application in your browser and you can test our application. 
+   
+2. Go to this link http://35.196.125.66:8888/ to test our application.
 
 # Usage of this Release
 

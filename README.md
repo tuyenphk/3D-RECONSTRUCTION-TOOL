@@ -17,7 +17,7 @@ https://github.com/tuyenphk/3D-RECONSTRUCTION-TOOL/releases/tag/v1.0
 - Sample 3D Model, housed in MODELING tab, with zoom in/out features and 360 viewing capability
 
 v2.0:
-- 
+- https://github.com/tuyenphk/3D-RECONSTRUCTION-TOOL/releases/tag/v2.0
 
 # Install instruction
 
@@ -32,27 +32,28 @@ To enjoy our application, follow those steps below:
 <strong>Server-side</Strong>
 1. change the directory to the backend folder: <strong>cd server</strong>
 2. install dependencie: <strong>npm install --save multer express cors body-parser @google-cloud/storage</strong>
-3. run the backend server: <strong>node index.js<strong>
+3. run the backend server: <strong>node index.js</strong>
+4. If you want to create the bucket on Google Cloud Storage, remember to dowload the json key file in APIs & Services/Credentials into the server/config folder. Also make change the bucket name in helpers/helpers.js, the project id and serviceKey in config/index.js
 
-# How to Use/Test This Release
+# How to Use/Test this Release
 
-You have two options to run this release:
-
-1. Dowload the github package and then in the client folder, install dependencies by <strong>npm install</strong> and you may start the web application by typing into the console: <strong>npm start</strong>. It will pop up the react web application in your browser and you can test our application.
-
-2. Go to this link http://34.105.28.90:8888/ to test our application.
-
-The website has several points of navigation: <strong>HOME, ABOUT, MODELING, RESOURCES, and TEAM.</strong>
-
-In the <strong>HOME</strong> tab, you may view the front page.
-
-In the <strong>ABOUT</strong> tab, you may see our project description.
+Go to this link http://35.196.125.66:8888/ to test our application.
 
 In the <strong>MODELING</strong> tab, you have 2 options to choose:
 
-- <strong>GO UPLOAD</strong>: you can upload 2D image, accepted only image file (.png, .jpg, .jpeg) and the 2D image will be displayed here.
-- <strong>GO SEARCH</strong>: our database has 10 images so you can enter the key word to search this
+1. <strong>GO UPLOAD</strong>: 
+- you can upload 2D image
+- Accepted only image file (.png, .jpg, .jpeg) 
+- 2D image will be displayed here.
+- Image will be stored into Google Cloud bucket.
+- Check on your website console.
+  
+2. <strong>GO SEARCH</strong>: 
+- Our database has 8 images 
+- You can enter the name of 2D images on the search bar to search
+- Choose any 2D image here to see the 3D model displayed on the right side
+- The zoom function for 3D model is midway on the development, so zooming 3D model now does not look well for this release.
 
-<strong>RESOURCES and TEAM</strong> are to contain miscellaneous information about the components of the project and its members.
+
 
 

@@ -36,13 +36,13 @@ export class Modeling extends Component {
             <Col md = {6}>
               <div className="text-box" >
                   <h3>Render 3D Model from 2D Image</h3>
-                    <p className="lead">
+                    <div className="lead">
                         <p>Upload a 2D space image and be amazed by the results</p> 
                         <b>Perfect for:</b>
                         <p>Researchers</p>
                         <p>Scientists</p>
                         <p>Educational specialists</p>
-                    </p>
+                    </div>
                     <Button type="button" className="block" onClick={this.uploadButton}>
                      Go upload
                     </Button>
@@ -52,13 +52,13 @@ export class Modeling extends Component {
             <Col md={6}
 >               <div className="text-box">
                   <h3>Search 3D model from our database</h3>
-                    <p className="lead">
+                    <div className="lead">
                         <p>Be amazed with our 3D database and feel free to use it into your project</p> 
                         <b>Perfect for:</b>
                         <p>Researchers</p>
                         <p>Scientists</p>
                         <p>Educational specialists</p>
-                    </p>
+                    </div>
                     <Button type="button" className="block" onClick={this.searchButton}>
                      Go search
                     </Button>

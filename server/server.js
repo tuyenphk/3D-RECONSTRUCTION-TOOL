@@ -23,8 +23,8 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 app.post('/uploads', async (req, res, next) => {
   try {
-    const myFile = req.file
-    const imageUrl = await uploadImage(myFile)
+    console.log ("requested receive")
+    const imageUrl = await uploadImage(req.body)
 
     res
       .status(200)
@@ -48,4 +48,3 @@ app.use((err, req, res, next) => {
 app.listen(9001, () => {
   console.log('app now listening for requests!!!')
 })
-

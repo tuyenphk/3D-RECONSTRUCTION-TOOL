@@ -17,7 +17,7 @@ https://github.com/tuyenphk/3D-RECONSTRUCTION-TOOL/releases/tag/v1.0
 - Sample 3D Model, housed in MODELING tab, with zoom in/out features and 360 viewing capability
 
 v2.0:
-- 
+- https://github.com/tuyenphk/3D-RECONSTRUCTION-TOOL/releases/tag/v2.0
 
 # Install instruction
 
@@ -35,15 +35,9 @@ To enjoy our application, follow those steps below:
 3. run the backend server: <strong>node index.js</strong>
 4. If you want to create the bucket on Google Cloud Storage, remember to dowload the json key file in APIs & Services/Credentials into the server/config folder. Also make change the bucket name in helpers/helpers.js, the project id and serviceKey in config/index.js
 
-# How to Use this Release
+# How to Use/Test this Release
 
-You have two options to run this release:
-
-1. Dowload the github package and clone it into your local machine, follow the instruction above to run in bothe the client-side and server-side. It will pop up the react web application in your browser and you can test our application. 
-   
-2. Go to this link http://35.196.125.66:8888/ to test our application.
-
-# Usage of this Release
+Go to this link http://35.196.125.66:8888/ to test our application.
 
 In the <strong>MODELING</strong> tab, you have 2 options to choose:
 

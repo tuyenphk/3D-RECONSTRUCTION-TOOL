@@ -15,9 +15,13 @@ const { format } = util
  */
 
 const uploadImage = (file) => new Promise((resolve, reject) => {
-  const { originalname, buffer } = file
+  /**
+   * The properties being extracted here must match those passed into  
+   * the FormData body in the browser.
+   */
+  const { filename, fileblob } = file
 
-  const blob = bucket.file(originalname.replace(/ /g, "_"))
+  const blob = bucket.file(filename.replace(/ /g, "_"))
   const blobStream = blob.createWriteStream({
     resumable: false
   })
@@ -31,7 +35,7 @@ const uploadImage = (file) => new Promise((resolve, reject) => {
   .on('error', () => {
     reject(`Unable to upload image, something went wrong`)
   })
-  .end(buffer)
+  .end(fileblob)
 
 })
 

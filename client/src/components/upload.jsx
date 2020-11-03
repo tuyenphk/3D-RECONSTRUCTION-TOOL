@@ -1,7 +1,13 @@
 import React, {Component, useState} from 'react';
 
 const Upload = () => {
-  const [file, setFile] = useState(null);
+  let [file, setFile] = useState(null);
+  /**
+   * Create a new state variable to hold the name of the
+   * file. This is needed since the browser does not retain
+   * the filename by default when uploading. 
+   */
+  let [filename, setFilename] = useState('');
 
   const filterBySize = (file) => {
     //filter out files larger than 5MB
@@ -11,7 +17,8 @@ const Upload = () => {
   const fileChangedHandler = event => {
     let file = event.target.files[0];
     let reader = new FileReader();
-
+    /**Capture filename */
+    setFilename(file.name);
     console.log(file);
     reader.onload = function(e) {
       setFile(e.target.result);
@@ -32,7 +39,13 @@ const Upload = () => {
   const handleUpload = event =>{
     event.preventDefault()
     var formData = new FormData();
-      formData.append('photo', file);
+      /**
+     * Append 2 keys to the request body: the file name
+     * and the file blob itself.
+     */
+    formData.append('fileblob', file);
+    formData.append('filename', filename);
+    console.log(filename);
       fetch('http://localhost:9001/uploads/', {
         method:'POST',
          body: formData
@@ -40,45 +53,6 @@ const Upload = () => {
       .then(response => response.json())
       .then(data => console.log(data));
   }
-
-//   uploadHandler = async (event) => { 
-//     event.preventDefault() 
-//     const data = new FormData() 
-//     data.append('image', 
-//     this.state.selectedFile) 
-//     await axios.post("http://localhost:9001/uploads", 
-//     data, { }).then(res => { 
-//     // then print response status 
-//     console.log(res.statusText) 
-//     }).catch(error => 
-//     console.log(error)) 
-// }
-
-  // uploadHandler = event => {
-  //   let formdata = new FormData()
-  //   formdata.append('image', this.state.selectedFile)
-  //   axios({
-  //     url: 'http://localhost:8000/upload',
-  //     method: "POST",
-  //     headers: {
-  //       authorization: "your token"
-  //     },
-  //     data: formdata
-  //   }). then ((res)=>{
-
-  //   })
-  // }
-
-  // uploadHandler = event => {
-  //   event.preventDefault()
-  //   const data = new FormData() 
-  //   data.append('image', this.state.selectedFile)
-  //   axios.post("http://localhost:9001/uploads", data, { 
-  //   })
-  //     .then(res => { // then print response status
-  //       console.log(res.statusText)
-  //     }).catch(error => console.log(error))
-  //   }
   
     return (
       <div id="upload">
@@ -99,7 +73,7 @@ const Upload = () => {
                 
 
                 <button className="btn btn-primary" style={{float:"left", margin: "0px"}}
-                          id="renderButton" onChange={handleUpload}>
+                          id="renderButton" onClick={handleUpload}>
                   Upload
                 </button>
              

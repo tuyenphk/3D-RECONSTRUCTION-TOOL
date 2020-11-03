@@ -62,7 +62,7 @@ export class Rend extends Component {
     objLoader.load(name,//"./img/search/Sample7.obj",// "./assets/plane.obj", //name,//"/img/search/Sample7.obj", // /img/search/Sample7.obj
       object => {
         this.objMesh = object;
-        this.objMesh.position.set(0.5, 1, 6);
+        this.objMesh.position.set(0.5,1,6)//(0.5, 1, 6);
         this.objMesh.scale.set(10, 10, 10);
         this.scene.add(this.objMesh);
       },
@@ -84,7 +84,6 @@ export class Rend extends Component {
   componentDidUpdate() {
     console.log("-in rend ComponentDidUpdate to " + this.props.objFileName);
    this.removeEntity();
-    //this.sceneSetup();
     this.addLights();
     this.addModels();
     this.renderScene();

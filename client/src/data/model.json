@@ -26,6 +26,10 @@
     {
         "name": "Sample7",
         "image": "/img/search/Sample7.png"
-    }  
+    },  
+    {
+      "name": "Sample8",
+      "image": "/img/search/Sample8.png"
+  }  
 ]
   

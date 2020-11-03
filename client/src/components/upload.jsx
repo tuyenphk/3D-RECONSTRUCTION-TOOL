@@ -114,7 +114,7 @@ const Upload = () => {
                 
 
                 <button className="btn btn-primary" style={{float:"left", margin: "0px"}}
-                          id="renderButton" onChange={handleUpload}>
+                          id="renderButton" onClick={handleUpload}>
                   Upload
                 </button>
              

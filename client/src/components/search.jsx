@@ -14,7 +14,7 @@ class Search extends Component {
     super(props);
     this.state = {
       search: "",
-      modelName: "Sample1"
+      modelName: "Sample7"
     };
   }
   
@@ -89,8 +89,8 @@ class Search extends Component {
 
             </Col>
             <Col md={6}>
-              {console.log(`..../img/search/${this.state.modelName}.obj`)}
-              <Rend objFileName={`../../public/img/${this.state.modelName}.obj`} />
+              {console.log(`...    ${this.state.modelName}.obj`)}
+              <Rend objFileName={this.state.modelName} />
             </Col>
           </Row>
         </div>

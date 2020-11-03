@@ -5,7 +5,6 @@ import * as d3 from 'd3'
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 export class Rend extends Component {
-
   componentDidMount() {
     console.log("-in rend mounted props" + this.props.objFileName);
     const width = this.mount.clientWidth;
@@ -52,23 +51,24 @@ export class Rend extends Component {
 
   addModels() {
     //Loading 3d Models
-      var objLoader = new OBJLoader();
-      console.log("-in rend on load  " + this.props.objFileName);
-      objLoader.load(  this.props.objFileName, //"./assets/plane.obj",
-        object => {
-          this.objMesh = object;
-          this.objMesh.position.set(0.5,1,6);
-          this.objMesh.scale.set(10, 10, 10);
-          this.scene.add(this.objMesh);
-        },
-        xhr => {
-          console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
-        },
-        // called when loading has errors
-        error => {
-          console.log("An error happened" + error);
-        }
-      );
+    var objLoader = new OBJLoader();
+    var name = `./img/search/${this.props.objFileName}.obj`;
+    console.log("-in rend on load  " + name);
+    objLoader.load(name,//"./img/search/Sample7.obj",// "./assets/plane.obj", //name,//"/img/search/Sample7.obj", // /img/search/Sample7.obj
+      object => {
+        this.objMesh = object;
+        this.objMesh.position.set(0.5, 1, 6);
+        this.objMesh.scale.set(10, 10, 10);
+        this.scene.add(this.objMesh);
+      },
+      xhr => {
+        console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+      },
+      // called when loading has errors
+      error => {
+        console.log("An error happened" + error);
+      }
+    );
   }
 
   componentWillUnmount() {
@@ -78,12 +78,17 @@ export class Rend extends Component {
 
   componentDidUpdate() {
     console.log("-in rend ComponentDidUpdate to " + this.props.objFileName);
-    this.stop();
+    //this.removeEntity(); 
     this.addModels();
 
     this.renderScene();
     //start animation
     this.start();
+  }
+  removeEntity() {
+    while (this.scene.children.length > 0) {
+      this.scene.remove(this.scene.children[0]);
+    }
   }
 
   start = () => {
@@ -111,7 +116,7 @@ export class Rend extends Component {
     return (
       <div
         style={{
-         width: "800px", height: "800px",
+          width: "800px", height: "800px",
           margin: "auto",
         }}
         ref={mount => {

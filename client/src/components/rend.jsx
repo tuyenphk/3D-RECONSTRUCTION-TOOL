@@ -2,20 +2,12 @@ import React, { Component } from "react";
 import * as THREE from "three";
 import { MTLLoader, OBJLoader } from "three-obj-mtl-loader";
 import * as d3 from 'd3'
-//import 'd3-selection-multi'
-//import OrbitControls from "three-orbitcontrols";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 export class Rend extends Component {
-  /*constructor(props){
-    super(props);
-    this.state = { 
-       objFileName : "./assets/plane.obj"
-         //, matFile = "https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-  }
-  }
-  */
+
   componentDidMount() {
+    console.log("-in rend mounted props" + this.props.objFileName);
     const width = this.mount.clientWidth;
     const height = this.mount.clientHeight;
     this.scene = new THREE.Scene();
@@ -48,6 +40,7 @@ export class Rend extends Component {
     this.scene.add(lights[0]);
     this.scene.add(lights[1]);
     this.scene.add(lights[2]);
+    this.camera.add(new THREE.PointLight(0xffffff, 1, 0));
 
     //Simple Box with WireFrame
     this.addModels();
@@ -58,52 +51,15 @@ export class Rend extends Component {
   }
 
   addModels() {
-    const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
-    const material = new THREE.MeshBasicMaterial({
-      color: "#0F0"
-    });
-    this.cube = new THREE.Mesh(geometry, material);
-    /*//this.scene.add(this.cube);
-
-    //LOAD TEXTURE and on completion apply it on SPHERE
-    new THREE.TextureLoader().load(this.matFile,
-      texture => {
-        //Update Texture
-        this.cube.material.map = texture;
-        this.cube.material.needsUpdate = true;
-      },
-      xhr => {
-        //Download Progress
-        console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
-      },
-      error => {
-        //Error CallBack
-        console.log("An error happened" + error);
-      }
-    );
-
-    //Rotate Models
-    if (this.cube) this.cube.rotation.y += 0.01;
-*/
     //Loading 3d Models
-    //Loading Material First
-    var mtlLoader = new MTLLoader();
-    mtlLoader.setBaseUrl("./assets/");
-    mtlLoader.load("freedom.mtl", materials => {
-      materials.preload();
-      console.log("Material loaded");
-      //Load Object Now and Set Material
       var objLoader = new OBJLoader();
-      objLoader.setMaterials(materials);
-      console.log("-in rend " + this.objFileName);
-      objLoader.load( "./assets/plane.obj",
+      console.log("-in rend on load  " + this.props.objFileName);
+      objLoader.load(  this.props.objFileName, //"./assets/plane.obj",
         object => {
-          this.freedomMesh = object;
-          this.freedomMesh.position.setX(0.5); //or  this
-          this.freedomMesh.position.setY(1); //or  this
-          this.freedomMesh.position.setZ(6); //or  this
-          this.freedomMesh.scale.set(10, 10, 10);
-          this.scene.add(this.freedomMesh);
+          this.objMesh = object;
+          this.objMesh.position.set(0.5,1,6);
+          this.objMesh.scale.set(10, 10, 10);
+          this.scene.add(this.objMesh);
         },
         xhr => {
           console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
@@ -113,7 +69,6 @@ export class Rend extends Component {
           console.log("An error happened" + error);
         }
       );
-    });
   }
 
   componentWillUnmount() {
@@ -121,6 +76,15 @@ export class Rend extends Component {
     this.mount.removeChild(this.renderer.domElement);
   }
 
+  componentDidUpdate() {
+    console.log("-in rend ComponentDidUpdate to " + this.props.objFileName);
+    this.stop();
+    this.addModels();
+
+    this.renderScene();
+    //start animation
+    this.start();
+  }
 
   start = () => {
     if (!this.frameId) {
@@ -135,7 +99,6 @@ export class Rend extends Component {
 
 
   animate = () => {
-
     this.renderScene();
     this.frameId = window.requestAnimationFrame(this.animate);
   };
@@ -144,9 +107,7 @@ export class Rend extends Component {
   };
 
 
-
   render() {
-    console.log("the props are:" + this.props);
     return (
       <div
         style={{

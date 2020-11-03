@@ -1,43 +1,31 @@
 [
     {
-      "name": "Sample 1",
-      "image": "/img/search/crab-nebula-2.png"
+      "name": "Sample1",
+      "image": "/img/search/Sample1.png"
     },
     {
-      "name": "Sample 2",
-      "image": "/img/search/crab-nebula.png"
+      "name": "Sample2",
+      "image": "/img/search/Sample2.png"
     },
     {
-      "name": "Sample 3",
-      "image": "/img/search/ghost-nebula.png"
+      "name": "Sample3",
+      "image": "/img/search/Sample3.png"
     },
     {
-      "name": "Sample 4",
-      "image": "/img/search/sample-nebula-2.png"
+      "name": "Sample4",
+      "image": "/img/search/Sample4.png"
     },
     {
-      "name": "Sample 5",
-      "image": "/img/search/sample-nebula.png"
+      "name": "Sample5",
+      "image": "/img/search/Sample5.png"
     },
     {
-        "name": "Sample 6",
-        "image": "/img/search/car.png"
+        "name": "Sample6",
+        "image": "/img/search/Sample6.png"
     },
     {
-        "name": "Sample 7",
-        "image": "/img/search/lamp.png"
-    },
-    {
-        "name": "Sample 8",
-        "image": "/img/search/chair.png"
-    },
-    {
-        "name": "Sample 9",
-        "image": "/img/search/chair.png"
-    },
-    {
-        "name": "Sample 10",
-        "image": "/img/search/table.png"
-    }
+        "name": "Sample7",
+        "image": "/img/search/Sample7.png"
+    }  
 ]
   

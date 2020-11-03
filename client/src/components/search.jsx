@@ -14,7 +14,7 @@ class Search extends Component {
     super(props);
     this.state = {
       search: "",
-      modelName: ""
+      modelName: "Sample1"
     };
   }
   
@@ -23,7 +23,7 @@ class Search extends Component {
     /*-- finction to handle the click on the image card
     ----*/
     function handleClick() {
-      console.log('in cardClick' + model.name);
+      console.log('in cardClick ' + model.name);
       this.setState({ modelName: model.name });
     }
 
@@ -89,8 +89,8 @@ class Search extends Component {
 
             </Col>
             <Col md={6}>
-              {console.log('this.state.modelName is' + this.state.modelName)}
-              <Rend objFileName={this.state.modelName} />
+              {console.log(`..../img/search/${this.state.modelName}.obj`)}
+              <Rend objFileName={`../../public/img/${this.state.modelName}.obj`} />
             </Col>
           </Row>
         </div>

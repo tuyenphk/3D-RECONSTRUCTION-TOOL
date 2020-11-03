@@ -1,15 +1,26 @@
 import React, { Component } from "react";
 import * as THREE from "three";
 import { MTLLoader, OBJLoader } from "three-obj-mtl-loader";
-//import OrbitControls from "three-orbitcontrols";
+import * as d3 from 'd3'
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 export class Rend extends Component {
-
   componentDidMount() {
+    console.log("-in rend mounted props" + this.props.objFileName);
+
+    this.scene = new THREE.Scene();
+    //add lights etc.
+    this.sceneSetup();
+    //load models
+    this.addModels();
+    //render whole scene
+    this.renderScene();
+    //start animation
+    this.start();
+  }
+  sceneSetup() {
     const width = this.mount.clientWidth;
     const height = this.mount.clientHeight;
-    this.scene = new THREE.Scene();
 
     //Add Renderer
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -19,15 +30,17 @@ export class Rend extends Component {
 
     //add Camera
     this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    this.camera.position.z = 10;
-    this.camera.position.y = 5;
+    this.camera.position.set(0, 5, 10);
+    this.camera.lookAt(new THREE.Vector3(0, 0, 0));
 
     //Camera Controls
     const controls = new OrbitControls(this.camera, this.renderer.domElement);
     controls.enableDamping = true;
     controls.campingFactor = 0.25;
     controls.enableZoom = true;
-
+    this.addLights();
+  }
+  addLights() {
     //LIGHTS
     var lights = [];
     lights[0] = new THREE.PointLight(0x304ffe, 1, 0);
@@ -39,98 +52,71 @@ export class Rend extends Component {
     this.scene.add(lights[0]);
     this.scene.add(lights[1]);
     this.scene.add(lights[2]);
-
-    //Simple Box with WireFrame
-    this.addModels();
-
-    this.renderScene();
-    //start animation
-    this.start();
+    this.camera.add(new THREE.PointLight(0xffffff, 1, 0));
   }
-
   addModels() {
-    // -----Step 1--------
-    const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
-    const material = new THREE.MeshBasicMaterial({
-      color: "#0F0"
-    });
-    this.cube = new THREE.Mesh(geometry, material);
-    //this.scene.add(this.cube);
-
-    // -----Step 2--------
-    //LOAD TEXTURE and on completion apply it on SPHERE
-    new THREE.TextureLoader().load(
-      "https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-      texture => {
-        //Update Texture
-        this.cube.material.map = texture;
-        this.cube.material.needsUpdate = true;
+    //Loading 3d Models
+    var objLoader = new OBJLoader();
+    var name = `./img/search/${this.props.objFileName}.obj`;
+    console.log("-in rend on load  " + name);
+    objLoader.load(name,//"./img/search/Sample7.obj",// "./assets/plane.obj", //name,//"/img/search/Sample7.obj", // /img/search/Sample7.obj
+      object => {
+        this.objMesh = object;
+        this.objMesh.position.set(0.5,1,6)//(0.5, 1, 6);
+        this.objMesh.scale.set(10, 10, 10);
+        this.scene.add(this.objMesh);
       },
       xhr => {
-        //Download Progress
         console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
       },
+      // called when loading has errors
       error => {
-        //Error CallBack
         console.log("An error happened" + error);
       }
     );
-
-    // -----Step 4--------
-    //Loading 3d Models
-    //Loading Material First
-    var mtlLoader = new MTLLoader();
-    mtlLoader.setBaseUrl("./assets/");
-    mtlLoader.load("freedom.mtl", materials => {
-      materials.preload();
-      console.log("Material loaded");
-      //Load Object Now and Set Material
-      var objLoader = new OBJLoader();
-      objLoader.setMaterials(materials);
-      objLoader.load(
-        "./assets/plane.obj",
-        object => {
-          this.freedomMesh = object;
-          this.freedomMesh.position.setX(0.5); //or  this
-          this.freedomMesh.position.setY(1); //or  this
-          this.freedomMesh.position.setZ(6); //or  this
-          this.freedomMesh.scale.set(10, 10, 10);
-          this.scene.add(this.freedomMesh);
-        },
-        xhr => {
-          console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
-        },
-        // called when loading has errors
-        error => {
-          console.log("An error happened" + error);
-        }
-      );
-    });
   }
 
   componentWillUnmount() {
     this.stop();
     this.mount.removeChild(this.renderer.domElement);
   }
+
+  componentDidUpdate() {
+    console.log("-in rend ComponentDidUpdate to " + this.props.objFileName);
+   this.removeEntity();
+    this.addLights();
+    this.addModels();
+    this.renderScene();
+    //start animation
+    this.start();
+  }
+
+  removeEntity() {
+    while (this.scene.children.length > 0) {
+      this.scene.remove(this.scene.children[0]);
+    }
+  }
+
   start = () => {
     if (!this.frameId) {
       this.frameId = requestAnimationFrame(this.animate);
     }
   };
+
+
   stop = () => {
     cancelAnimationFrame(this.frameId);
   };
-  animate = () => {
-    // -----Step 3--------
-    //Rotate Models
-    if (this.cube) this.cube.rotation.y += 0.01;
 
+
+  animate = () => {
     this.renderScene();
     this.frameId = window.requestAnimationFrame(this.animate);
   };
   renderScene = () => {
     if (this.renderer) this.renderer.render(this.scene, this.camera);
   };
+
 
   render() {
     return (

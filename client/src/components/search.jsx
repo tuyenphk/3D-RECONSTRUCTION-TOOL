@@ -4,25 +4,38 @@ import {
   CardBody,
   CardTitle
 } from "mdbreact";
-import {Row, Col} from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
+import Rend from './rend'
 import modelList from "../data/model.json";
 
 class Search extends Component {
-  state = {
-    search: ""
-  };
-
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      search: "",
+      modelName: "Sample7"
+    };
+  }
+  
   renderModel = model => {
-    
+
+    /*-- finction to handle the click on the image card
+    ----*/
+    function handleClick() {
+      console.log('in cardClick ' + model.name);
+      this.setState({ modelName: model.name });
+    }
+
     return (
-      <div className="col-md-3" style={{ marginTop: "20px" }}>
+      <div className="col-md-3" style={{ marginTop: "20px" }} onClick={handleClick.bind(this)}>
         <Card>
           <CardBody>
             <p className=""
-            style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+              style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
               <img
-               width = {200}
-               height= {200}
+                width={200}
+                height={200}
                 src={model.image}
                 className={model.image}
                 alt={model.name}
@@ -38,6 +51,7 @@ class Search extends Component {
     );
   };
 
+
   onchange = e => {
     this.setState({ search: e.target.value });
   };
@@ -48,45 +62,40 @@ class Search extends Component {
       return model.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
     });
 
-		return (	
-			<div className="search">
-				 <div className="container">
-            <h3 className="search-text"> Search 3D model</h3>  
+    return (
+      <div className="search">
+        <div className="container">
+          <h3 className="search-text"> Search 3D model</h3>
 
-            {/*Search Input*/}
-            <label className="search-label" htmlFor="search-input">
-            
-                <input
-                    label="Search Model"
-                    icon="search"
-                    placeholder="Enter name of model"
-                    onChange={this.onchange}
-                />
-                <i className="fa fa-search search-icon"/>
-            </label>
+          {/*Search Input*/}
+          <label className="search-label" htmlFor="search-input">
 
-            <Row>
-                <Col md = {6}> 
-               
-                    {filteredModels.map(model => {
-                    return this.renderModel(model);
-                })}
-                
-                </Col>
+            <input
+              label="Search Model"
+              icon="search"
+              placeholder="Enter name of model"
+              onChange={this.onchange}
+            />
+            <i className="fa fa-search search-icon" />
+          </label>
 
-                <Col md = {6}>
-               
-                    <div className="display-render">
-                    <h1>This place to display 3D model</h1>
-                    </div>
-                
-                </Col>
-            </Row>
-                        </div>
-                    </div>
-              
-           
-			)
-	}
+          <Row>
+            <Col md={6}>
+
+              {filteredModels.map(model => {
+                return this.renderModel(model);
+              })
+              }
+
+            </Col>
+            <Col md={6}>
+              {console.log(`...    ${this.state.modelName}.obj`)}
+              <Rend objFileName={this.state.modelName} />
+            </Col>
+          </Row>
+        </div>
+      </div>
+    )
+  }
 }
 export default Search;

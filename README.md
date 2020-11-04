@@ -35,6 +35,17 @@ To enjoy our application, follow those steps below:
 3. run the backend server: <strong>node index.js</strong>
 4. If you want to create the bucket on Google Cloud Storage, remember to dowload the json key file in APIs & Services/Credentials into the server/config folder. Also make change the bucket name in helpers/helpers.js, the project id and serviceKey in config/index.js
 
+
+# Release v2.0 
+
+Link: to v2.0: https://github.com/tuyenphk/3D-RECONSTRUCTION-TOOL/releases/tag/2.0
+
+Added features to interactivity: 
+
+- upload functionality & display to google cloud
+- image viewing/rendering
+
+
 # How to Use/Test this Release
 
 Go to this link http://35.196.125.66:8888/ to test our application.

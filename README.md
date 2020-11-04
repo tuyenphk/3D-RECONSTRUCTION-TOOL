@@ -17,7 +17,7 @@ https://github.com/tuyenphk/3D-RECONSTRUCTION-TOOL/releases/tag/v1.0
 - Sample 3D Model, housed in MODELING tab, with zoom in/out features and 360 viewing capability
 
 v2.0:
-- https://github.com/tuyenphk/3D-RECONSTRUCTION-TOOL/releases/tag/v2.0
+- https://github.com/tuyenphk/3D-RECONSTRUCTION-TOOL/releases/tag/2.0
 
 # Install instruction
 

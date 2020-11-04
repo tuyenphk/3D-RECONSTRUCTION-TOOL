@@ -1,6 +1,6 @@
 const util = require('util')
 const gc = require('../config/')
-const bucket = gc.bucket('uploadimage12')
+const bucket = gc.bucket('symmetry-demo-bucket')
 
 
 const { format } = util

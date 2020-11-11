@@ -11,7 +11,7 @@ const multerMid = multer({
   storage: multer.memoryStorage(),
   limits: {
     // no larger than 5mb.
-    fileSize: 5 * 1024 * 1024 * 1024,
+    fileSize: 5 * 1024 * 1024 * 1042* 1024,
   },
 });
 

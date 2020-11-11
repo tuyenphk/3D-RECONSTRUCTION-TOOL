@@ -6,7 +6,7 @@ const bucketName = 'symmetry-demo-bucket';
 const bucket = gc.bucket('symmetry-demo-bucket');
 
 const srcFilename = 'pufferfish2.jpg';
-const destFilename = './uploads/pufferfish2.jpg';
+const destFilename = './sample-downloads/pufferfish2.jpg';
 
 
 async function downloadFile() {
@@ -84,4 +84,4 @@ async function listFiles() {
     });
   }
 
-  listFiles().catch(console.error);
+listFiles().catch(console.error);

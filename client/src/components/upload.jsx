@@ -4,6 +4,7 @@ import Rend from './rend'
 
 
 const Upload = () => {
+  var modelName = "";
   let [file, setFile] = useState(null);
   /**
    * Create a new state variable to hold the name of the
@@ -39,6 +40,11 @@ const Upload = () => {
 
   };
 
+  const handleRender = event => {
+    event.preventDefault()
+    console.log("-in upload");
+    modelName = "plane";
+  }
   const handleUpload = event => {
     event.preventDefault()
     var formData = new FormData();
@@ -63,8 +69,7 @@ const Upload = () => {
         <Row>
           <Col md={6}>
             <div className="upload-text">
-              <h3>Upload a 2D image to get a 3D model</h3>
-
+              <h3>Upload a 2D image to model</h3>
               <input className="btn btn-secondary"
                 id="fileInput"
                 type="file"
@@ -78,21 +83,18 @@ const Upload = () => {
                 Upload
                 </button>
               <button className="btn btn-primary" style={{ float: "left", marginLeft: "10px", marginBottom: "10px" }}
-                id="renderButton" >
+                id="renderButton" onClick={handleRender}>
                 Render 3D Model
                 </button>
             </div>
             <img src={file} alt={""} width="400" height="400" text-align="left" style={{ display: 'block' }} />
           </Col>
           <Col md={6}>
-            <Rend />
+            <Rend objFileName={modelName}/>
           </Col>
         </Row>
       </div>
-     
     </div>
   )
 }
-
-
 export default Upload;

@@ -14,7 +14,7 @@ class Search extends Component {
     super(props);
     this.state = {
       search: "",
-      modelName: "Sample7"
+      modelName: ""
     };
   }
   

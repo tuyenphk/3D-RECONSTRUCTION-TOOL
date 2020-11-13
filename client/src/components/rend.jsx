@@ -8,6 +8,7 @@ export class Rend extends Component {
   componentDidMount() {
     console.log("-in rend mounted props" + this.props.objFileName);
 
+
     this.scene = new THREE.Scene();
     //add lights etc.
     this.sceneSetup();
@@ -55,14 +56,16 @@ export class Rend extends Component {
     this.camera.add(new THREE.PointLight(0xffffff, 1, 0));
   }
   addModels() {
+
+    
     //Loading 3d Models
     var objLoader = new OBJLoader();
     var name = `./img/search/${this.props.objFileName}.obj`;
     console.log("-in rend on load  " + name);
-    objLoader.load(name,//"./img/search/Sample7.obj",// "./assets/plane.obj", //name,//"/img/search/Sample7.obj", // /img/search/Sample7.obj
+    objLoader.load(file,//name,//"./img/search/Sample7.obj",// "./assets/plane.obj", //name,//"/img/search/Sample7.obj", // /img/search/Sample7.obj
       object => {
         this.objMesh = object;
-        this.objMesh.position.set(0.5,1,6)//(0.5, 1, 6);
+        this.objMesh.position.set(0.5, 1, 6)//(0.5, 1, 6);
         this.objMesh.scale.set(10, 10, 10);
         this.scene.add(this.objMesh);
       },
@@ -83,7 +86,7 @@ export class Rend extends Component {
 
   componentDidUpdate() {
     console.log("-in rend ComponentDidUpdate to " + this.props.objFileName);
-   this.removeEntity();
+    this.removeEntity();
     this.addLights();
     this.addModels();
     this.renderScene();
@@ -107,8 +110,6 @@ export class Rend extends Component {
   stop = () => {
     cancelAnimationFrame(this.frameId);
   };
-
-
   animate = () => {
     this.renderScene();
     this.frameId = window.requestAnimationFrame(this.animate);

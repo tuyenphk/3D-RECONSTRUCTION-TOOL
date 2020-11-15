@@ -10,8 +10,8 @@ const app = express()
 const multerMid = multer({
   storage: multer.memoryStorage(),
   limits: {
-    // no larger than 5mb.
-    fileSize: 5 * 1024 * 1024 * 1042* 1024,
+    // no larger than 500mb.
+    fileSize: 5 * 100 * 1024* 1024,
   },
 });
 
@@ -24,15 +24,16 @@ app.use(bodyParser.urlencoded({extended: false})) //  reading data from the <for
 
 app.post('/uploads', async (req, res, next) => {
   try {
+    const myFile = req.file
     console.log ("requested receive")
-    const imageUrl = await uploadImage(req.body)  // values from the <form> element inside req.body
+    const imageUrl = await uploadImage(myFile)  // values from the <form> element inside req.body
 
     res.status(200).json({
         message: "Upload was successful",
         data: imageUrl
       })
     res.redirect('/')
-    
+
   } catch (error) {
     next(error)
   }

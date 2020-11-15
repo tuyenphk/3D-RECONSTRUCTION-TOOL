@@ -46,12 +46,12 @@ const Upload = () => {
     formData.append('fileblob', file);
     formData.append('filename', filename);
     console.log(filename);
-      fetch('http://35.196.125.66:9001/uploads', {
-        method:'POST',
-         body: formData
-      }) 
-      .then(response => response.json())
-      .then(data => console.log(data));
+    fetch('http://35.196.125.66:9001/uploads', {
+      method:'POST',
+      body: formData
+    }) 
+    .then(response => response.json())
+    .then(data => console.log(data));
   };
   
   const handleDownload = event =>{

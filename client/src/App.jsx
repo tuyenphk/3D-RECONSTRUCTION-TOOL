@@ -25,23 +25,23 @@ export class App extends Component {
   render() {
     return (
       <div>
-  <Route component={Navigation} />
-  <Switch>
-    <Route path="/upload" component={Upload} />
-    <Route path="/search" component={Search} />
-    <Route
-      render={(routeProps) => (
-        <>
-          <Header {...routeProps} data={this.state.landingPageData.Header} />
-          <About {...routeProps} data={this.state.landingPageData.About} />
-          <Modeling {...routeProps} data={this.state.landingPageData.Modeling} />
-          <Resources {...routeProps} data={this.state.landingPageData.Resources} />
-          <Team {...routeProps} data={this.state.landingPageData.Team} />
-        </>
-      )}
-    />
-  </Switch>
-</div>
+        <Route component={Navigation} />
+        <Switch>
+          <Route path="/upload" component={Upload} />
+          <Route path="/search" component={Search} />
+          <Route
+            render={(routeProps) => (
+              <>
+                <Header {...routeProps} data={this.state.landingPageData.Header} />
+                <About {...routeProps} data={this.state.landingPageData.About} />
+                <Modeling {...routeProps} data={this.state.landingPageData.Modeling} />
+                <Resources {...routeProps} data={this.state.landingPageData.Resources} />
+                <Team {...routeProps} data={this.state.landingPageData.Team} />
+              </>
+            )}
+          />
+        </Switch>
+      </div>
     );
   }
 }

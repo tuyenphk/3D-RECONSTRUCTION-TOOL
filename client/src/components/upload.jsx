@@ -4,8 +4,9 @@ import Rend from './rend'
 
 
 const Upload = () => {
-  var modelName = "";
+  let [modelName,setModelName] = useState('');
   let [file, setFile] = useState(null);
+
   /**
    * Create a new state variable to hold the name of the
    * file. This is needed since the browser does not retain
@@ -16,6 +17,11 @@ const Upload = () => {
   const filterBySize = (file) => {
     //filter out files larger than 5MB
     return file.size < 5242880;
+  };
+
+  const modelChangedHandler = event => {
+    setModelName(`https://storage.googleapis.com/obj_file_bucket/Sample1.obj`);
+    console.log(modelName);
   };
 
   const fileChangedHandler = event => {
@@ -57,10 +63,10 @@ const Upload = () => {
     formData.append('fileblob', file);
     formData.append('filename', filename);
     console.log(filename);
-    fetch('http://35.196.125.66:9001/uploads', {
-      method: 'POST',
-      body: formData
-    })
+      fetch('http://localhost:9001/uploads', {
+        method:'POST',
+         body: formData
+      }) 
       .then(response => response.json())
       .then(data => console.log(data));
   }
@@ -85,7 +91,7 @@ const Upload = () => {
                 Upload
                 </button>
               <button className="btn btn-primary" style={{ float: "left", marginLeft: "10px", marginBottom: "10px" }}
-                id="renderButton" onClick={handleRender}>
+                id="renderButton" onClick={modelChangedHandler}>
                 Render 3D Model
                 </button>
             </div>

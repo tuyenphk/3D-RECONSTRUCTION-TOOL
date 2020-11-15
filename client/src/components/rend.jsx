@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as THREE from "three";
-import { MTLLoader, OBJLoader } from "three-obj-mtl-loader";
+import { OBJLoader } from "three-obj-mtl-loader";
 import * as d3 from 'd3'
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
@@ -62,7 +62,7 @@ export class Rend extends Component {
     var objLoader = new OBJLoader();
     var name = `./img/search/${this.props.objFileName}.obj`;
     console.log("-in rend on load  " + name);
-    objLoader.load(file,//name,//"./img/search/Sample7.obj",// "./assets/plane.obj", //name,//"/img/search/Sample7.obj", // /img/search/Sample7.obj
+    objLoader.load("https://storage.googleapis.com/symmetry-demo-bucket/OBJ_files/plane.obj",//name,//"./img/search/Sample7.obj",// "./assets/plane.obj", //name,//"/img/search/Sample7.obj", // /img/search/Sample7.obj
       object => {
         this.objMesh = object;
         this.objMesh.position.set(0.5, 1, 6)//(0.5, 1, 6);

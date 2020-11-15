@@ -40,11 +40,13 @@ const Upload = () => {
 
   };
 
-  const handleRender = event => {
-    event.preventDefault()
-    console.log("-in upload");
-    modelName = "plane";
+
+  const handleRender = (event) =>{
+    event.preventDefault();
+    modelName = `https://storage.googleapis.com/obj_file_bucket/Sample1.obj`;
+    console.log("-in upload: "+ modelName);
   }
+
   const handleUpload = event => {
     event.preventDefault()
     var formData = new FormData();
@@ -90,8 +92,7 @@ const Upload = () => {
             <img src={file} alt={""} width="400" height="400" text-align="left" style={{ display: 'block' }} />
           </Col>
           <Col md={6}> 
-            <Rend objFileName = {"https://storage.googleapis.com/symmetry-demo-bucket/OBJ_files/plane.obj"}/>
-         
+            <Rend objFileName = {modelName} />
           </Col>
         </Row>
       </div>

@@ -66,7 +66,7 @@ export class Rend extends Component {
     var objLoader = new OBJLoader();
     var name = this.props.objFileName; //"./img/search/${this.props.searchObjFileName}.obj"
     console.log("-in rend on load  ----" + name);
-    objLoader.load(name,//"./img/search/Sample7.obj",// "./assets/plane.obj", //name,//"/img/search/Sample7.obj", // /img/search/Sample7.obj
+    objLoader.load(name,//"./img/search/Sample7.obj",// "./assets/plane.obj", 
       object => {
         this.objMesh = object;
         this.objMesh.position.set(0.5, 1, 6)//(0.5, 1, 6);

@@ -89,8 +89,9 @@ const Upload = () => {
             </div>
             <img src={file} alt={""} width="400" height="400" text-align="left" style={{ display: 'block' }} />
           </Col>
-          <Col md={6}>
-            <Rend objFileName={modelName}/>
+          <Col md={6}> 
+            <Rend objFileName = {"https://storage.googleapis.com/symmetry-demo-bucket/OBJ_files/plane.obj"}/>
+         
           </Col>
         </Row>
       </div>

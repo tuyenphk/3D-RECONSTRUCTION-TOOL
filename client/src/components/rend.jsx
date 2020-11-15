@@ -10,8 +10,10 @@ export class Rend extends Component {
 
 
     this.scene = new THREE.Scene();
-    //add lights etc.
+    //setup
     this.sceneSetup();
+    //add lights
+    //this.addCamera();
     //load models
     this.addModels();
     //render whole scene
@@ -29,18 +31,22 @@ export class Rend extends Component {
     this.renderer.setSize(width, height);
     this.mount.appendChild(this.renderer.domElement);
 
-    //add Camera
-    this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    this.camera.position.set(0, 5, 10);
-    this.camera.lookAt(new THREE.Vector3(0, 0, 0));
-
-    //Camera Controls
-    const controls = new OrbitControls(this.camera, this.renderer.domElement);
-    controls.enableDamping = true;
-    controls.campingFactor = 0.25;
-    controls.enableZoom = true;
+     //add Camera
+     this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+     this.camera.position.set(0, 5, 10);
+     this.camera.lookAt(new THREE.Vector3(0, 0, 0));
+     
+     //Camera Controls
+     const controls = new OrbitControls(this.camera, this.renderer.domElement);
+     controls.enableDamping = true;
+     controls.campingFactor = 0.25;
+     controls.enableZoom = true;  
     this.addLights();
   }
+
+  /*addCamera(){
+   
+    }*/
   addLights() {
     //LIGHTS
     var lights = [];
@@ -56,13 +62,11 @@ export class Rend extends Component {
     this.camera.add(new THREE.PointLight(0xffffff, 1, 0));
   }
   addModels() {
-
-    
     //Loading 3d Models
     var objLoader = new OBJLoader();
-    var name = `./img/search/${this.props.objFileName}.obj`;
-    console.log("-in rend on load  " + name);
-    objLoader.load("https://storage.googleapis.com/symmetry-demo-bucket/OBJ_files/plane.obj",//name,//"./img/search/Sample7.obj",// "./assets/plane.obj", //name,//"/img/search/Sample7.obj", // /img/search/Sample7.obj
+    var name = this.props.objFileName; //"./img/search/${this.props.searchObjFileName}.obj"
+    console.log("-in rend on load  ----" + name);
+    objLoader.load(name,//"./img/search/Sample7.obj",// "./assets/plane.obj", //name,//"/img/search/Sample7.obj", // /img/search/Sample7.obj
       object => {
         this.objMesh = object;
         this.objMesh.position.set(0.5, 1, 6)//(0.5, 1, 6);
@@ -87,6 +91,7 @@ export class Rend extends Component {
   componentDidUpdate() {
     console.log("-in rend ComponentDidUpdate to " + this.props.objFileName);
     this.removeEntity();
+    this.camera.position.set(0, 5, 10);
     this.addLights();
     this.addModels();
     this.renderScene();
@@ -106,10 +111,10 @@ export class Rend extends Component {
     }
   };
 
-
   stop = () => {
     cancelAnimationFrame(this.frameId);
   };
+
   animate = () => {
     this.renderScene();
     this.frameId = window.requestAnimationFrame(this.animate);

@@ -46,7 +46,7 @@ const Upload = () => {
     formData.append('fileblob', file);
     formData.append('filename', filename);
     console.log(filename);
-      fetch('http://35.196.125.66:9001/uploads', {
+      fetch('http://localhost:9001/uploads', {
         method:'POST',
          body: formData
       }) 

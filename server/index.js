@@ -19,19 +19,20 @@ app.use(cors());
 app.disable('x-powered-by')
 app.use(multerMid.single('file'))
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({extended: false})) //  reading data from the <form> element 
+                                                  //  urlencoded method within body-parser tells body-parser to extract data from the <form> element and add them to the body property in the request object.
 
 app.post('/uploads', async (req, res, next) => {
   try {
     console.log ("requested receive")
-    const imageUrl = await uploadImage(req.body)
+    const imageUrl = await uploadImage(req.body)  // values from the <form> element inside req.body
 
-    res
-      .status(200)
-      .json({
+    res.status(200).json({
         message: "Upload was successful",
         data: imageUrl
       })
+    res.redirect('/')
+    
   } catch (error) {
     next(error)
   }

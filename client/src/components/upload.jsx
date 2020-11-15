@@ -52,8 +52,12 @@ const Upload = () => {
       }) 
       .then(response => response.json())
       .then(data => console.log(data));
-  }
+  };
   
+  const handleDownload = event =>{
+    // building
+  };
+
     return (
       <div id="upload">
         <div className="container">
@@ -78,7 +82,7 @@ const Upload = () => {
                 </button>
              
                 <button className="btn btn-primary" style={{float:"left", marginLeft: "10px", marginBottom: "10px"}} 
-                        id="renderButton" >
+                        id="renderButton" onClick={handleDownload}>
                   Render 3D Model
                 </button>
               

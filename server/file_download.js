@@ -10,7 +10,7 @@ var args = process.argv.slice(2);
 const fileinput = args[0];
 
 const srcFilename = fileinput;
-const destFilename = './sample-downloads/', fileinput;  // NEED TO FIX
+const destFilename = './sample-downloads/' + fileinput;  // NEED TO FIX
 
 async function downloadFile() {
   const options = {

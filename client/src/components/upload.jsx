@@ -69,7 +69,7 @@ const Upload = () => {
     console.log(filename);
       fetch('http://localhost:9001/uploads', {
         method:'POST',
-         ody: formData
+        body: formData
       }) 
       .then(response => response.json())
       .then(data => console.log(data));

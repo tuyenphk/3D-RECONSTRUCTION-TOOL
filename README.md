@@ -42,9 +42,9 @@ Added features to interactivity:
 
 v3.0: https://github.com/tuyenphk/3D-RECONSTRUCTION-TOOL/releases/tag/v3.0
 
-- Ability to render and view sample 2D models and their respective 3D maps
+- Ability view sample 2D models and their respective 3D maps
 - Backend ability to download from cloud storage into local storage
-- Upload functionality & render 3D model for a "Plan.png" file
+- Upload functionality & view 3D model for a "Plan.png" file
 
 
 

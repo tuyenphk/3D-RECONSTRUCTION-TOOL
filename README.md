@@ -39,8 +39,11 @@ Added features to interactivity:
 - Image viewing/rendering
 - Utilize the 'search' function to find images
 
+v3.0: https://github.com/tuyenphk/3D-RECONSTRUCTION-TOOL/releases/tag/3.0
 
-
-
+- Ability to render and view sample 2D models and their respective 3D maps
+- Backend ability to download from cloud storage into local storage
+- Ability to search recent .obj files, obtain and display their rendered images
+- Upload functionality & display onscreen
 
 

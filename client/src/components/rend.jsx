@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as THREE from "three";
-import { MTLLoader, OBJLoader } from "three-obj-mtl-loader";
+import { OBJLoader } from "three-obj-mtl-loader";
 import * as d3 from 'd3'
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
@@ -8,9 +8,12 @@ export class Rend extends Component {
   componentDidMount() {
     console.log("-in rend mounted props" + this.props.objFileName);
 
+
     this.scene = new THREE.Scene();
-    //add lights etc.
+    //setup
     this.sceneSetup();
+    //add lights
+    //this.addCamera();
     //load models
     this.addModels();
     //render whole scene
@@ -28,18 +31,22 @@ export class Rend extends Component {
     this.renderer.setSize(width, height);
     this.mount.appendChild(this.renderer.domElement);
 
-    //add Camera
-    this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    this.camera.position.set(0, 5, 10);
-    this.camera.lookAt(new THREE.Vector3(0, 0, 0));
-
-    //Camera Controls
-    const controls = new OrbitControls(this.camera, this.renderer.domElement);
-    controls.enableDamping = true;
-    controls.campingFactor = 0.25;
-    controls.enableZoom = true;
+     //add Camera
+     this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+     this.camera.position.set(0, 5, 10);
+     this.camera.lookAt(new THREE.Vector3(0, 0, 0));
+     
+     //Camera Controls
+     const controls = new OrbitControls(this.camera, this.renderer.domElement);
+     controls.enableDamping = true;
+     controls.campingFactor = 0.25;
+     controls.enableZoom = true;  
     this.addLights();
   }
+
+  /*addCamera(){
+   
+    }*/
   addLights() {
     //LIGHTS
     var lights = [];
@@ -57,12 +64,12 @@ export class Rend extends Component {
   addModels() {
     //Loading 3d Models
     var objLoader = new OBJLoader();
-    var name = `./img/search/${this.props.objFileName}.obj`;
-    console.log("-in rend on load  " + name);
-    objLoader.load(name,//"./img/search/Sample7.obj",// "./assets/plane.obj", //name,//"/img/search/Sample7.obj", // /img/search/Sample7.obj
+    var name = this.props.objFileName; //"./img/search/${this.props.searchObjFileName}.obj"
+    console.log("-in rend on load  ----" + name);
+    objLoader.load(name,//"./img/search/Sample7.obj",// "./assets/plane.obj", 
       object => {
         this.objMesh = object;
-        this.objMesh.position.set(0.5,1,6)//(0.5, 1, 6);
+        this.objMesh.position.set(0.5, 1, 6)//(0.5, 1, 6);
         this.objMesh.scale.set(10, 10, 10);
         this.scene.add(this.objMesh);
       },
@@ -83,7 +90,8 @@ export class Rend extends Component {
 
   componentDidUpdate() {
     console.log("-in rend ComponentDidUpdate to " + this.props.objFileName);
-   this.removeEntity();
+    this.removeEntity();
+    this.camera.position.set(0, 5, 10);
     this.addLights();
     this.addModels();
     this.renderScene();
@@ -103,11 +111,9 @@ export class Rend extends Component {
     }
   };
 
-
   stop = () => {
     cancelAnimationFrame(this.frameId);
   };
-
 
   animate = () => {
     this.renderScene();

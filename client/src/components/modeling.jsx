@@ -14,8 +14,8 @@ export class Modeling extends Component {
     this.props.history.push({
       pathname: "/search"
     })
-  }
-
+  } 
+  
   render() {
     return (
       <div id="modeling">

@@ -20,7 +20,7 @@ const Upload = () => {
   };
 
   const modelChangedHandler = event => {
-    setModelName(`https://storage.googleapis.com/obj_file_bucket/Sample1.obj`);
+    setModelName(`https://storage.googleapis.com/obj_file_bucket/plane.obj`);
     console.log(modelName);
   };
 
@@ -49,7 +49,7 @@ const Upload = () => {
 
   const handleRender = (event) =>{
     event.preventDefault();
-    modelName = `https://storage.googleapis.com/obj_file_bucket/Sample1.obj`;
+    modelName = `https://storage.googleapis.com/obj_file_bucket/plane.obj`;
     console.log("-in upload: "+ modelName);
   }
 

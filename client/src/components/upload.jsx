@@ -16,9 +16,12 @@ const Upload = () => {
 
   const fileChangedHandler = event => {
     let file = event.target.files[0];
-    let reader = new FileReader();
-    /**Capture filename */
+    /**
+     * Capture filename
+     */
     setFilename(file.name);
+    let reader = new FileReader();
+
     console.log(file);
     reader.onload = function(e) {
       setFile(e.target.result);
@@ -39,20 +42,21 @@ const Upload = () => {
   const handleUpload = event =>{
     event.preventDefault()
     var formData = new FormData();
-      /**
+    /**
      * Append 2 keys to the request body: the file name
      * and the file blob itself.
      */
-    formData.append('fileblob', file);
-    formData.append('filename', filename);
-    console.log(filename);
-      fetch('http://localhost:9001/uploads', {
+      formData.append('fileblob', file);
+      formData.append('filename', filename);
+      fetch('http://localhost:9001/uploads/', {
         method:'POST',
          body: formData
       }) 
       .then(response => response.json())
       .then(data => console.log(data));
   }
+
+
   
     return (
       <div id="upload">

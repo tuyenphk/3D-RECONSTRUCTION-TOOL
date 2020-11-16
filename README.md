@@ -39,7 +39,7 @@ Added features to interactivity:
 - Image viewing/rendering
 - Utilize the 'search' function to find images
 
-
+v3.0: https://github.com/tuyenphk/3D-RECONSTRUCTION-TOOL/releases/tag/v3.0
 
 
 

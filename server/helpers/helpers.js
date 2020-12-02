@@ -2,7 +2,6 @@ const util = require('util')
 const gc = require('../config/')
 const bucket = gc.bucket('symmetry-demo-bucket')
 
-
 const { format } = util
 
 /**
@@ -30,6 +29,7 @@ const uploadImage = (file) => new Promise((resolve, reject) => {
     const publicUrl = format(
       `https://storage.googleapis.com/${bucket.name}/${blob.name}`
     )
+    // const publicUrl = file.publicUrl();
     resolve(publicUrl)
   })
   .on('error', () => {

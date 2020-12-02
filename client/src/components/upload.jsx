@@ -38,14 +38,14 @@ const Upload = () => {
     };
     reader.readAsDataURL(event.target.files[0]);
 
-    //   if (file != ".png" ) {
-    //     window.alert("File does not support. You must use .png or .jpg ");
-    //     return false;
-    //  }
-    //  if (file.size > 10e6) {
-    //    window.alert("Please upload a file smaller than 10 MB");
-    //    return false;
-    //  }
+    if (!filename.endsWith('png') || !filename.endsWith('jpg')   ) {
+      window.alert("File does not support. You must use .png or .jpg ");
+      return false;
+    }
+    if (file.size > 5e6) {
+      window.alert("Please upload a file smaller than 5 MB");
+      return false;
+    }
 
   };
 
@@ -60,7 +60,6 @@ const Upload = () => {
     event.preventDefault()
     var formData = new FormData();
     /**
-
    * Append 2 keys to the request body: the file name
    * and the file blob itself.
    */
@@ -111,4 +110,3 @@ const Upload = () => {
   )
 }
 export default Upload;
-

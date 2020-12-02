@@ -17,6 +17,25 @@
     },
 
     "Team": [
+        {
+            "img": "img/team/01.jpg",
+            "name": "Elizaveta Ibeme",
+            "job": "Implemented the 3D model by ThreeJS"
+        },
+        {
+            "img": "img/team/02.jpg",
+            "name": "Khai Nguyen",
+            "job": "Worked on research paper and neural network"
+        }, {
+            "img": "img/team/03.jpg",
+            "name": "Lauren Kimpel",
+            "job": "Worked on research paper and backend in Nodejs connected to Google Cloud Storage"
+        },
+        {
+            "img": "img/team/04.jpg",
+            "name": "Tuyen Pham",
+            "job": "Designed and implemented the website frontend in React, backend in Nodejs and also Google Cloud Storage "
+        }
     ]
    
 

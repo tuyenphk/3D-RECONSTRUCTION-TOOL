@@ -26,6 +26,10 @@ const Upload = () => {
 
   const fileChangedHandler = event => {
     let file = event.target.files[0];
+    /**
+     * Capture filename
+     */
+    setFilename(file.name);
     let reader = new FileReader();
     /**Capture filename */
     setFilename(file.name);
@@ -65,7 +69,7 @@ const Upload = () => {
     console.log(filename);
       fetch('http://localhost:9001/uploads', {
         method:'POST',
-         body: formData
+        body: formData
       }) 
       .then(response => response.json())
       .then(data => console.log(data));

@@ -1,6 +1,7 @@
 const util = require('util')
 const gc = require('../config/')
 const bucket = gc.bucket('symmetry-demo-bucket')
+const objBucket = gc.bucket('obj_file_bucket')
 
 const { format } = util
 
@@ -39,4 +40,12 @@ const uploadImage = (file) => new Promise((resolve, reject) => {
 
 })
 
+const downloadObj = (file) =>  {
+
+  // Downloads the file
+  const url = obj_file_bucket.file(file).publicUrl();
+return url;
+}
+
 module.exports = uploadImage
+module.exports = downloadObj

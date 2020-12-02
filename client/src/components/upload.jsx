@@ -20,7 +20,7 @@ const Upload = () => {
   };
 
   const modelChangedHandler = event => {
-    setModelName(`https://storage.googleapis.com/obj_file_bucket/Sample1.obj`);
+    setModelName(downloadObj(fileName.split('.')[0]+'.obj'));
     console.log(modelName);
   };
 
@@ -47,11 +47,11 @@ const Upload = () => {
   };
 
 
-  const handleRender = (event) =>{
+ /* const handleRender = (event) =>{
     event.preventDefault();
-    modelName = `https://storage.googleapis.com/obj_file_bucket/Sample1.obj`;
+    setModelName(downloadObj(fileName.split('.')[0]+'.obj'));
     console.log("-in upload: "+ modelName);
-  }
+  }*/
 
   const handleUpload = event => {
     event.preventDefault()

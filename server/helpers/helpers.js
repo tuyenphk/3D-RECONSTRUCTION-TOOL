@@ -5,6 +5,20 @@ const bucket = gc.bucket('symmetry-demo-bucket')
 
 const { format } = util
 
+
+
+exports.copyFileToGCS = (localFilePath, bucketName, options) => {
+  options = options || {};
+
+  const bucket = storage.bucket('symmetry-demo-bucket');
+  const fileName = path.basename(localFilePath);
+  const file = bucket.file(fileName);
+
+  return bucket.upload(localFilePath, options)
+    .then(() => file.makePublic())
+    .then(() => exports.getPublicUrl(bucketName, gcsName));
+};
+
 /**
  *
  * @param { File } object file object that will be uploaded
@@ -28,7 +42,7 @@ const uploadImage = (file) => new Promise((resolve, reject) => {
 
   blobStream.on('finish', () => {
     const publicUrl = format(
-      `https://storage.googleapis.com/${bucket.name}/${blob.name}`
+      `https://storage.googleapis.com/${bucket.name}/${blob.filename}`
     )
     resolve(publicUrl)
   })

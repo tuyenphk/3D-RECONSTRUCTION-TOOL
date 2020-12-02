@@ -21,23 +21,46 @@ app.use(multerMid.single('file'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false})) //  reading data from the <form> element 
                                                   //  urlencoded method within body-parser tells body-parser to extract data from the <form> element and add them to the body property in the request object.
-
-app.post('/uploads', async (req, res, next) => {
-  try {
-    const myFile = req.file
-    console.log ("requested receive")
-    const imageUrl = await uploadImage(myFile)  // values from the <form> element inside req.body
-
-    res.status(200).json({
-        message: "Upload was successful",
-        data: imageUrl
-      })
-    res.redirect('/')
-
-  } catch (error) {
-    next(error)
+// Process the file upload and upload to Google Cloud Storage.
+app.post('/upload', multer.single('file'), (req, res, next) => {
+  if (!req.file) {
+    res.status(400).send('No file uploaded.');
+    return;
   }
-})
+
+  // Create a new blob in the bucket and upload the file data.
+  const blob = bucket.file(req.file.originalname);
+  const blobStream = blob.createWriteStream();
+
+  blobStream.on('error', err => {
+    next(err);
+  });
+
+  blobStream.on('finish', () => {
+    // The public URL can be used to directly access the file via HTTP.
+    const publicUrl = format(
+      `https://storage.googleapis.com/${bucket.name}/${blob.name}`
+    );
+    res.status(200).send(publicUrl);
+  });
+
+  blobStream.end(req.file.buffer);
+});
+// app.post('/uploads', async (req, res, next) => {
+//   try {
+//     console.log ("requested receive")
+//     const imageUrl = await uploadImage(req.body)  // values from the <form> element inside req.body
+
+//     res.status(200).json({
+//         message: "Upload was successful",
+//         data: imageUrl
+//       })
+//     res.redirect('/')
+
+//   } catch (error) {
+//     next(error)
+//   }
+// })
 
 app.use((err, req, res, next) => {
   res.status(500).json({

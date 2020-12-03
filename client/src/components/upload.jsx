@@ -19,11 +19,6 @@ const Upload = () => {
     return file.size < 5242880;
   };
 
-  const modelChangedHandler = event => {
-    setModelName(`https://storage.googleapis.com/obj_file_bucket/plane.obj`);
-    console.log(modelName);
-  };
-
   const fileChangedHandler = event => {
     let file = event.target.files[0];
     /**
@@ -49,12 +44,23 @@ const Upload = () => {
 
   };
 
+  const modelChangedHandler = event => {
+    let file = events.target.files[0] 
+    setModelName(downloadObj(fileName.split('.')[0]+'.obj'));
+    console.log(modelName);
+    fetch('http://localhost:9001/downloadObj', {
+      method:'POST',
+      body: formData
+    }) 
+    .then(response => response.json())
+    .then(data => console.log(data));
+  };
 
-  const handleRender = (event) =>{
-    event.preventDefault();
-    modelName = `https://storage.googleapis.com/obj_file_bucket/plane.obj`;
-    console.log("-in upload: "+ modelName);
-  }
+  // const handleRender = (event) =>{
+  //   event.preventDefault();
+  //   modelName = `https://storage.googleapis.com/obj_file_bucket/plane.obj`;
+  //   console.log("-in upload: "+ modelName);
+  // }
 
   const handleUpload = event => {
     event.preventDefault()

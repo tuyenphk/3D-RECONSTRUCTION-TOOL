@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.20.0",
     "d3": "^6.2.0",
+    "downloadjs": "^1.4.7",
     "drei": "^1.5.7",
     "mdbreact": "^4.27.0",
     "react": "^16.13.1",

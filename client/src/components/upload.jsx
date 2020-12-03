@@ -2,7 +2,6 @@ import React, { Component, useState } from 'react';
 import { Row, Col } from 'react-bootstrap'
 import Rend from './rend'
 
-
 const Upload = () => {
   let [modelName,setModelName] = useState('');
   let [file, setFile] = useState(null);
@@ -44,23 +43,24 @@ const Upload = () => {
 
   };
 
-  const modelChangedHandler = event => {
-    let file = events.target.files[0] 
-    setModelName(downloadObj(fileName.split('.')[0]+'.obj'));
-    console.log(modelName);
-    fetch('http://localhost:9001/downloadObj', {
-      method:'POST',
-      body: formData
-    }) 
-    .then(response => response.json())
-    .then(data => console.log(data));
+  const modelChangedHandler = event =>{
+    axios.get(`http://localhost:9001/downloadObj`)
+    .then(function(response){///print success
+      console.log(response);
+    })
+    .catch(function(error){//print failure
+      console.log(error);
+    })
+    .then(function(){
+    });
+
   };
 
-  // const handleRender = (event) =>{
-  //   event.preventDefault();
-  //   modelName = `https://storage.googleapis.com/obj_file_bucket/plane.obj`;
-  //   console.log("-in upload: "+ modelName);
-  // }
+  // const modelChangedHandler = event => {
+  //   setModelName(`https://storage.googleapis.com/obj_file_bucket/plane.obj`);
+  //   console.log(modelName);
+  // };
+
 
   const handleUpload = event => {
     event.preventDefault()
@@ -72,12 +72,12 @@ const Upload = () => {
     formData.append('fileblob', file);
     formData.append('filename', filename);
     console.log(filename);
-      fetch('http://localhost:9001/uploads', {
-        method:'POST',
-        body: formData
-      }) 
-      .then(response => response.json())
-      .then(data => console.log(data));
+    fetch('http://localhost:9001/uploads', {
+      method:'POST',
+      body: formData
+    }) 
+    .then(response => response.json())
+    .then(data => console.log(data));
   }
 
 
@@ -101,7 +101,7 @@ const Upload = () => {
                 Upload
                 </button>
               <button className="btn btn-primary" style={{ float: "left", marginLeft: "10px", marginBottom: "10px" }}
-                id="renderButton" onClick={modelChangedHandler}>
+                type="model" id="renderButton" onClick={modelChangedHandler}>
                 Render 3D Model
                 </button>
             </div>

@@ -41,14 +41,14 @@ const uploadImage = (file) => new Promise((resolve, reject) => {
 })
 
 const downloadObj = (file) =>  {
-  const file = objBucket.file(filename);
+  // const file = objBucket.file(filename);
   const publicUrl = file.publicUrl();
   // Downloads the file
   const url = objBucket.file(file).publicUrl();
   return url;
 }
 
-downloadObj().catch(console.error);
+downloadObj();
 
 module.exports = uploadImage
 module.exports = downloadObj

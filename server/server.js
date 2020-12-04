@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const multer = require('multer')
 
 const uploadImage = require('./helpers/helpers')
+const downloadObj = require('./helpers/helpers')
 
 const app = express()
 
@@ -30,6 +31,21 @@ app.post('/uploads', async (req, res, next) => {
       .status(200)
       .json({
         message: "Upload was successful",
+        data: imageUrl
+      })
+  } catch (error) {
+    next(error)
+  }
+})
+
+app.post('/downloadObj', async (req, res, next) => {
+  try {
+    const imageUrl = await downloadObj(req.body)
+
+    res
+      .status(200)
+      .json({
+        message: "Download was successful",
         data: imageUrl
       })
   } catch (error) {

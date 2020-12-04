@@ -3,15 +3,6 @@ const gc = require('../config/')
 const bucket = gc.bucket('symmetry-demo-bucket')
 const objBucket = gc.bucket('obj_file_bucket')
 
-const {  format} = util
-
-const downloadObj = (file) =>  {
- 
-    // Downloads the file
-    const url = obj_file_bucket.file(file).publicUrl();
- return url;
-}
-
 
 /**
  *
@@ -35,17 +26,28 @@ const uploadImage = (file) => new Promise((resolve, reject) => {
   })
 
   blobStream.on('finish', () => {
-      const publicUrl = format(
-        `https://storage.googleapis.com/${bucket.name}/${blob.name}`
-      )
-      resolve(publicUrl)
-    })
-    .on('error', () => {
-      reject(`Unable to upload image, something went wrong`)
-    })
-    .end(fileblob)
+    const publicUrl = format(
+      `https://storage.googleapis.com/${bucket.name}/${blob.name}`
+    )
+    // const publicUrl = file.publicUrl();
+    resolve(publicUrl)
+  })
+  .on('error', () => {
+    reject(`Unable to upload image, something went wrong`)
+  })
+  .end(fileblob)
 
 })
+
+const downloadObj = (file) =>  {
+  // const file = objBucket.file(filename);
+  // const publicUrl = file.publicUrl();
+  // Downloads the file
+  const url = objBucket.file(file).publicUrl();
+  return url;
+}
+
+// downloadObj();
 
 module.exports = uploadImage
 module.exports = downloadObj

@@ -1,12 +1,11 @@
 import React, { Component, useState } from 'react';
 import { Row, Col } from 'react-bootstrap'
 import Rend from './rend'
-import axios from 'axios'
 
 const Upload = () => {
   let [modelName,setModelName] = useState('');
   let [file, setFile] = useState(null);
-  let [imageUrl, setImageUrl] = useState('');
+  let [url, setUrl] = useState('');
 
   /**
    * Create a new state variable to hold the name of the
@@ -48,7 +47,7 @@ const Upload = () => {
   const modelChangedHandler = event =>{
     fetch('http://localhost:9001/downloadObj', {
       method:'POST',
-      body: imageUrl
+      body: url
     }) 
     .then(response => response.json())
     .then(data => console.log(data));

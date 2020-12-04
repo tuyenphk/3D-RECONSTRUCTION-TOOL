@@ -30,11 +30,10 @@ const uploadImage = (file) => new Promise((resolve, reject) => {
     const publicUrl = format(
       `https://storage.googleapis.com/${bucket.name}/${blob.name}`
     )
-    // const publicUrl = file.publicUrl();
     resolve(publicUrl)
   })
-  .on('error', () => {
-    reject(`Unable to upload image, something went wrong`)
+  .on('error', (error) => {
+    reject(error)
   })
   .end(fileblob)
 
@@ -48,7 +47,5 @@ const downloadObj = (file) =>  {
   return url;
 }
 
-// downloadObj();
+module.exports = {uploadImage,downloadObj}
 
-module.exports = uploadImage
-module.exports = downloadObj

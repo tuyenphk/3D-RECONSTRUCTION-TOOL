@@ -39,7 +39,7 @@ app.post('/uploads', async (req, res, next) => {
 
 app.post('/downloadObj', async (req, res, next) => {
   try {
-    const url = await downloadObj(req.body)
+    const url = await downloadObj(req.body.filename)
 
     res
       .status(200)

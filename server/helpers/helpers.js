@@ -40,12 +40,12 @@ const uploadImage = (file) => new Promise((resolve, reject) => {
 })
 
 const downloadObj = (file) =>  {
-  // const file = objBucket.file(filename);
-  // const publicUrl = file.publicUrl();
   // Downloads the file
-  const url = objBucket.file(file).publicUrl();
+  var filename = file.split('.')[0]+'.obj';
+  const url = `https://storage.googleapis.com/obj_file_bucket/${filename}`;
   return url;
 }
+
 
 module.exports = {uploadImage,downloadObj}
 

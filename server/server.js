@@ -40,13 +40,13 @@ app.post('/uploads', async (req, res, next) => {
 
 app.post('/downloadObj', async (req, res, next) => {
   try {
-    const url = await downloadObj(req.body)
+    const imageUrl = await downloadObj(req.body)
 
     res
       .status(200)
       .json({
         message: "Download was successful",
-        data: url
+        data: imageUrl
       })
   } catch (error) {
     next(error)

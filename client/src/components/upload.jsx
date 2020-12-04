@@ -1,11 +1,12 @@
 import React, { Component, useState } from 'react';
 import { Row, Col } from 'react-bootstrap'
 import Rend from './rend'
-
+import axios from 'axios'
 
 const Upload = () => {
   let [modelName,setModelName] = useState('');
   let [file, setFile] = useState(null);
+  let [imageUrl, setImageUrl] = useState('');
 
   /**
    * Create a new state variable to hold the name of the
@@ -17,11 +18,6 @@ const Upload = () => {
   const filterBySize = (file) => {
     //filter out files larger than 5MB
     return file.size < 5242880;
-  };
-
-  const modelChangedHandler = event => {
-    setModelName(`https://storage.googleapis.com/obj_file_bucket/plane.obj`);
-    console.log(modelName);
   };
 
   const fileChangedHandler = event => {
@@ -38,41 +34,48 @@ const Upload = () => {
     };
     reader.readAsDataURL(event.target.files[0]);
 
-    //   if (file != ".png" ) {
-    //     window.alert("File does not support. You must use .png or .jpg ");
-    //     return false;
-    //  }
-    //  if (file.size > 10e6) {
-    //    window.alert("Please upload a file smaller than 10 MB");
-    //    return false;
-    //  }
+    if (!filename.endsWith('png') || !filename.endsWith('jpg')   ) {
+      window.alert("File does not support. You must use .png or .jpg ");
+      return false;
+    }
+    if (file.size > 5e6) {
+      window.alert("Please upload a file smaller than 5 MB");
+      return false;
+    }
 
   };
 
+  const modelChangedHandler = event =>{
+    fetch('http://localhost:9001/downloadObj', {
+      method:'POST',
+      body: imageUrl
+    }) 
+    .then(response => response.json())
+    .then(data => console.log(data));
+  };
 
-  const handleRender = (event) =>{
-    event.preventDefault();
-    modelName = `https://storage.googleapis.com/obj_file_bucket/plane.obj`;
-    console.log("-in upload: "+ modelName);
-  }
+  // const modelChangedHandler = event => {
+  //   setModelName(`https://storage.googleapis.com/obj_file_bucket/plane.obj`);
+  //   console.log(modelName);
+  // };
+
 
   const handleUpload = event => {
     event.preventDefault()
     var formData = new FormData();
     /**
-
    * Append 2 keys to the request body: the file name
    * and the file blob itself.
    */
     formData.append('fileblob', file);
     formData.append('filename', filename);
     console.log(filename);
-      fetch('http://localhost:9001/uploads', {
-        method:'POST',
-        body: formData
-      }) 
-      .then(response => response.json())
-      .then(data => console.log(data));
+    fetch('http://localhost:9001/uploads', {
+      method:'POST',
+      body: formData
+    }) 
+    .then(response => response.json())
+    .then(data => console.log(data));
   }
 
 
@@ -96,7 +99,7 @@ const Upload = () => {
                 Upload
                 </button>
               <button className="btn btn-primary" style={{ float: "left", marginLeft: "10px", marginBottom: "10px" }}
-                id="renderButton" onClick={modelChangedHandler}>
+                type="model" id="renderButton" onClick={modelChangedHandler}>
                 Render 3D Model
                 </button>
             </div>
@@ -111,4 +114,3 @@ const Upload = () => {
   )
 }
 export default Upload;
-

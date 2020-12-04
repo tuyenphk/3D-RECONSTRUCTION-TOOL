@@ -1,7 +1,7 @@
 const util = require('util')
 const gc = require('../config/')
 const bucket = gc.bucket('symmetry-demo-bucket')
-
+const objBucket = gc.bucket('obj_file_bucket')
 
 const { format } = util
 
@@ -30,6 +30,7 @@ const uploadImage = (file) => new Promise((resolve, reject) => {
     const publicUrl = format(
       `https://storage.googleapis.com/${bucket.name}/${blob.name}`
     )
+    // const publicUrl = file.publicUrl();
     resolve(publicUrl)
   })
   .on('error', () => {
@@ -39,4 +40,15 @@ const uploadImage = (file) => new Promise((resolve, reject) => {
 
 })
 
+const downloadObj = (file) =>  {
+  // const file = objBucket.file(filename);
+  // const publicUrl = file.publicUrl();
+  // Downloads the file
+  const url = objBucket.file(file).publicUrl();
+  return url;
+}
+
+// downloadObj();
+
 module.exports = uploadImage
+module.exports = downloadObj

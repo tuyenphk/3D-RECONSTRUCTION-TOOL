@@ -74,6 +74,7 @@ app.post('/render1', async (req, res, next) => {
     // 
 
     */
+    console.log ("finished render")
     res
       .status(200)
       .json({

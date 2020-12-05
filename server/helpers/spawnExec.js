@@ -4,7 +4,7 @@ const spawnExec = () => new Promise((resolve, reject) => {
     /**
      */
     const ls = spawn('sh network-call.sh',['fileName'],{ shell: true }); /// this is our command
-    // python2 demo.py --image Data/examples/plane.png
+    // https://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options
 
     ls.stdout.on("data", data => {
         console.log(`stdout: ${data}`); // grab data to "stdout" object
@@ -24,6 +24,6 @@ const spawnExec = () => new Promise((resolve, reject) => {
         console.log(`child process exited with code ${code}`);
     });
 
-  })
+})
 
-  module.exports = spawnExec
+module.exports = spawnExec

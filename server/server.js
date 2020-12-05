@@ -5,6 +5,8 @@ const multer = require('multer')
 
 const uploadImage = require('./helpers/helpers')
 const downloadObj = require('./helpers/helpers')
+const spawnExec = require('./helpers/spawnExec')
+
 
 const app = express()
 
@@ -52,6 +54,37 @@ app.post('/downloadObj', async (req, res, next) => {
     next(error)
   }
 })
+
+// render
+app.post('/render1', async (req, res, next) => {
+  try {
+    console.log ("requested receive")
+    // grab imageUrl
+    const outPut = await spawnExec(req.body)
+    /*
+    // download image to local -- download script
+
+    // spawn child process (pass in image name)
+    
+    // grab obj file from stdout
+
+    // upload objFile to bucket  -- upload script
+
+    // return objUrl file
+    // 
+
+    */
+    res
+      .status(200)
+      .json({
+        message: "Render was successful",
+        data: outPut
+      })
+  } catch (error) {
+    next(error)
+  }
+})
+
 
 app.use((err, req, res, next) => {
   res.status(500).json({

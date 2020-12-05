@@ -1,9 +1,9 @@
-const { exec } = require('child_process');
+const { spawn } = require('child_process');
 
 const spawnExec = () => new Promise((resolve, reject) => {
     /**
      */
-    const ls = exec('sh network-call.sh', ['plane']); /// this is our command
+    const ls = spawn('sh network-call.sh', ['plane']); /// this is our command
     // python2 demo.py --image Data/examples/plane.png
 
     ls.stdout.on("data", data => {

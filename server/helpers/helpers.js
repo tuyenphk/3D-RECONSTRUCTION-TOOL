@@ -1,4 +1,6 @@
 const util = require('util')
+const fs = require('fs');
+const request = require('request');
 const gc = require('../config/')
 const bucket = gc.bucket('symmetry-demo-bucket')
 const objBucket = gc.bucket('obj_file_bucket')
@@ -39,13 +41,21 @@ const uploadImage = (file) => new Promise((resolve, reject) => {
 
 })
 
-const downloadObj = (file) =>  {
-  // Downloads the file
+const downloadObj = (file) =>  { // take in objFilename
+  
   var filename = file.split('.')[0]+'.obj';
   const url = `https://storage.googleapis.com/obj_file_bucket/${filename}`;
+  
+  // Downloads the file
+  request.head(url, (err, res, body) => {
+    console.log('content-type:', res.headers['content-type']);
+    console.log('content-length:', res.headers['content-length']);
+
+    request(url).pipe(fs.createWriteStream(filename));
+  });
+  
   return url;
 }
-
 
 module.exports = {uploadImage,downloadObj}
 

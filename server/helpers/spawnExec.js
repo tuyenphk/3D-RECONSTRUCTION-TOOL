@@ -22,8 +22,8 @@ const spawnExec = () => new Promise((resolve, reject) => {
 
     ls.on("close", code => {
         console.log(`child process exited with code ${code}`);
+        return 0;
     });
-
 })
 
 module.exports = spawnExec

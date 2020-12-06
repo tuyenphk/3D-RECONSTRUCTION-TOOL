@@ -5,6 +5,7 @@ import * as d3 from 'd3'
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 export class Rend extends Component {
+
   componentDidMount() {
     console.log("-in rend mounted props" + this.props.objFileName);
 
@@ -21,7 +22,7 @@ export class Rend extends Component {
     //start animation
     this.start();
   }
-  sceneSetup() {
+  sceneSetup() { 
     const width = this.mount.clientWidth;
     const height = this.mount.clientHeight;
 
@@ -31,24 +32,21 @@ export class Rend extends Component {
     this.renderer.setSize(width, height);
     this.mount.appendChild(this.renderer.domElement);
 
-     //add Camera
-     this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-     this.camera.position.set(0, 5, 10);
-     this.camera.lookAt(new THREE.Vector3(0, 0, 0));
-     
-     //Camera Controls
-     const controls = new OrbitControls(this.camera, this.renderer.domElement);
-     controls.enableDamping = true;
-     controls.campingFactor = 0.25;
-     controls.enableZoom = true;  
+    //add Camera
+    this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+    this.camera.position.set(0, 5, 10);
+    this.camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+    //Camera Controls
+    const controls = new OrbitControls(this.camera, this.renderer.domElement);
+    controls.enableDamping = true;
+    controls.campingFactor = 0.25;
+    controls.enableZoom = true;
     this.addLights();
   }
 
-  /*addCamera(){
-   
-    }*/
   addLights() {
-    //LIGHTS
+    //LIGHTS come from three points
     var lights = [];
     lights[0] = new THREE.PointLight(0x304ffe, 1, 0);
     lights[1] = new THREE.PointLight(0xffffff, 1, 0);
@@ -90,7 +88,9 @@ export class Rend extends Component {
 
   componentDidUpdate() {
     console.log("-in rend ComponentDidUpdate to " + this.props.objFileName);
+    //remove everything that might be left from previous render
     this.removeEntity();
+    //rest camera position
     this.camera.position.set(0, 5, 10);
     this.addLights();
     this.addModels();

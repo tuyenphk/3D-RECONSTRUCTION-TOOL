@@ -1,12 +1,10 @@
 import React, { Component, useState } from 'react';
 import { Row, Col } from 'react-bootstrap'
 import Rend from './rend'
-import axios from 'axios'
 
 const Upload = () => {
   let [modelName,setModelName] = useState('');
   let [file, setFile] = useState(null);
-  let [imageUrl, setImageUrl] = useState('');
 
   /**
    * Create a new state variable to hold the name of the
@@ -46,19 +44,16 @@ const Upload = () => {
 
   };
 
-  const modelChangedHandler = event =>{
+  const modelRender = event =>{
+    var formData = new FormData();
+    formData.append('filename', filename);
     fetch('http://localhost:9001/downloadObj', {
       method:'POST',
-      body: imageUrl
+      body: formData
     }) 
     .then(response => response.json())
-    .then(data => console.log(data));
+    .then(data => setModelName(data.data));
   };
-
-  // const modelChangedHandler = event => {
-  //   setModelName(`https://storage.googleapis.com/obj_file_bucket/plane.obj`);
-  //   console.log(modelName);
-  // };
 
 
   const handleUpload = event => {
@@ -99,7 +94,7 @@ const Upload = () => {
                 Upload
                 </button>
               <button className="btn btn-primary" style={{ float: "left", marginLeft: "10px", marginBottom: "10px" }}
-                type="model" id="renderButton" onClick={modelChangedHandler}>
+                type="model" id="renderButton" onClick={modelRender}>
                 Render 3D Model
                 </button>
             </div>

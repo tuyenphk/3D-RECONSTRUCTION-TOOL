@@ -29,25 +29,22 @@ const uploadImage = (file) => new Promise((resolve, reject) => {
     const publicUrl = format(
       `https://storage.googleapis.com/${bucket.name}/${blob.name}`
     )
-    // const publicUrl = file.publicUrl();
     resolve(publicUrl)
   })
-  .on('error', () => {
-    reject(`Unable to upload image, something went wrong`)
+  .on('error', (error) => {
+    reject(error)
   })
   .end(fileblob)
 
 })
 
 const downloadObj = (file) =>  {
-  // const file = objBucket.file(filename);
-  // const publicUrl = file.publicUrl();
   // Downloads the file
-  const url = objBucket.file(file).publicUrl();
+  var filename = file.split('.')[0]+'.obj';
+  const url = `https://storage.googleapis.com/obj_file_bucket/${filename}`;
   return url;
 }
 
-// downloadObj();
 
-module.exports = uploadImage
-module.exports = downloadObj
+module.exports = {uploadImage,downloadObj}
+

@@ -3,8 +3,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const multer = require('multer')
 
-const uploadImage = require('./helpers/helpers')
-const downloadObj = require('./helpers/helpers')
+const {uploadImage,downloadObj} = require('./helpers/helpers')
 
 const app = express()
 
@@ -40,13 +39,13 @@ app.post('/uploads', async (req, res, next) => {
 
 app.post('/downloadObj', async (req, res, next) => {
   try {
-    const imageUrl = await downloadObj(req.body)
+    const url = await downloadObj(req.body.filename)
 
     res
       .status(200)
       .json({
         message: "Download was successful",
-        data: imageUrl
+        data: url
       })
   } catch (error) {
     next(error)

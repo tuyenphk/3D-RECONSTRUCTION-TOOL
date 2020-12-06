@@ -20,15 +20,16 @@ const uploadImage = (file) => new Promise((resolve, reject) => {
   /**
    * The properties being extracted here must match those passed into  
    * the FormData body in the browser.
+   * const uploadImage = (file) => new Promise((resolve, reject) => { //  The created promise will eventually end in a resolved state, or in a rejected state, calling the respective callback functions (passed to then and catch) upon finishing.
    */
   const { filename, fileblob } = file
-
   const blob = bucket.file(filename.replace(/ /g, "_"))
   const blobStream = blob.createWriteStream({
     resumable: false
   })
 
-  blobStream.on('finish', () => {
+  blobStream
+  .on('finish', () => {
     const publicUrl = format(
       `https://storage.googleapis.com/${bucket.name}/${blob.name}`
     )

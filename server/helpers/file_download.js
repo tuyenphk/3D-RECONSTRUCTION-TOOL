@@ -1,49 +1,32 @@
 const {Storage} = require('@google-cloud/storage');
 const util = require('util')
-const gc = require('./config')
+const gc = require('../config')
 const storage = new Storage();
 const bucketName = 'symmetry-demo-bucket';
 const bucket = gc.bucket('symmetry-demo-bucket');
 
-const srcFilename = 'pufferfish2.jpg';
-const destFilename = './uploads/pufferfish2.jpg';
-
 
 async function downloadFile() {
+  const srcFilename = 'table.png';
+  const destFilename = '../../../Pixel2Mesh/Data/examples/table.png';
   const options = {
     // The path to which the file should be downloaded, e.g. "./file.txt"
     destination: destFilename,
   };
 
-  // Downloads the file
-  await storage.bucket(bucketName).file(srcFilename).download(options);
-
-  console.log(
-    `gs://${bucketName}/${srcFilename} downloaded to ${destFilename}.`
-  );
+  // Downloads the file  
+  try {
+    await storage.bucket(bucketName).file(srcFilename).download(options); 
+    console.log(`gs://${bucketName}/${srcFilename} downloaded to ${destFilename}.`);
+  }
+  catch(err){
+    console.log(err)
+  }
 }
 
-downloadFile().catch(console.error);
+downloadFile();
 
-
-
-bucket.getFiles(function(err, files) {
-  if (!err) {
-    // files is an array of File objects.
-  }
-});
-
-
-//-
-// If your bucket has versioning enabled, you can get all of your files
-// scoped to their generation.
-//-
-bucket.getFiles({
-  versions: true
-}, function(err, files) {
-  // Each file is scoped to its generation.
-});
-
+// ----------------------- query file ------------------------
 //-
 // To control how many API requests are made and page through the results
 // manually, set `autoPaginate` to `false`.
@@ -62,6 +45,20 @@ const callback = function(err, files, nextQuery, apiResponse) {
   // changed, use the `getMetadata` method.
   files[0].getMetadata(function(err, metadata) {});
 };
+
+bucket.getFiles(function(err, files) {
+  if (!err) {
+    // files is an array of File objects.
+  }
+});
+
+// If your bucket has versioning enabled, you can get all of your files
+// scoped to their generation.
+bucket.getFiles({
+  versions: true
+}, function(err, files) {
+  // Each file is scoped to its generation.
+});
 
 bucket.getFiles({
   autoPaginate: false

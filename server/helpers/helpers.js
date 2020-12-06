@@ -1,4 +1,6 @@
 const util = require('util')
+const fs = require('fs');
+// const request = require('request');
 const gc = require('../config/')
 const bucket = gc.bucket('symmetry-demo-bucket')
 const objBucket = gc.bucket('obj_file_bucket')
@@ -17,15 +19,16 @@ const uploadImage = (file) => new Promise((resolve, reject) => {
   /**
    * The properties being extracted here must match those passed into  
    * the FormData body in the browser.
+   * const uploadImage = (file) => new Promise((resolve, reject) => { //  The created promise will eventually end in a resolved state, or in a rejected state, calling the respective callback functions (passed to then and catch) upon finishing.
    */
   const { filename, fileblob } = file
-
   const blob = bucket.file(filename.replace(/ /g, "_"))
   const blobStream = blob.createWriteStream({
     resumable: false
   })
 
-  blobStream.on('finish', () => {
+  blobStream
+  .on('finish', () => {
     const publicUrl = format(
       `https://storage.googleapis.com/${bucket.name}/${blob.name}`
     )
@@ -38,13 +41,13 @@ const uploadImage = (file) => new Promise((resolve, reject) => {
 
 })
 
-const downloadObj = (file) =>  {
-  // Downloads the file
+const downloadObj = (file) =>  { // take in objFilename
+  
   var filename = file.split('.')[0]+'.obj';
   const url = `https://storage.googleapis.com/obj_file_bucket/${filename}`;
+  
   return url;
 }
-
 
 module.exports = {uploadImage,downloadObj}
 

@@ -20,12 +20,12 @@
         {
             "img": "img/team/01.jpg",
             "name": "Elizaveta Ibeme",
-            "job": "Implemented the 3D model by ThreeJS"
+            "job": "Project management and Implemented the 3D model by ThreeJS"
         },
         {
             "img": "img/team/02.jpg",
             "name": "Khai Nguyen",
-            "job": "Worked on research paper and neural network"
+            "job": "Worked on research paper, create a pipeline and connect neural network with the website"
         }, {
             "img": "img/team/03.jpg",
             "name": "Lauren Kimpel",

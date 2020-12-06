@@ -3,6 +3,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const multer = require('multer')
 
+// const uploadImage = require('./helpers/helpers')
 const {uploadImage,downloadObj} = require('./helpers/helpers')
 
 const app = express()

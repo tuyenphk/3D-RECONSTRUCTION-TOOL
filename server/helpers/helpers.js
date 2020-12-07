@@ -63,6 +63,20 @@ const uploadObj = (objFilename) => new Promise((resolve, reject) => {
   console.log(process.cwd())
   const objFilePath = "../../Pixel2Mesh/Data/examples/" + objFilename;
   objBucket.upload(objFilePath);
+
+  const blob = objBucket.file(objFilename.replace(/ /g, "_"))
+  fs.createReadStream(objFilePath)
+  .pipe(blob.createWriteStream({ resumable: false }))
+  .on('error', (error) => {
+    reject(error)
+  })
+  .on('finish', () => {
+    const publicUrl = format(
+      `https://storage.googleapis.com/${objBucket.name}/${blob.name}`
+    )
+    resolve(publicUrl)
+  });
+
   // const blob = bucket.file(objFilePath)
   // const blobStream = blob.createWriteStream({
   //   resumable: false

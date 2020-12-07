@@ -34,7 +34,7 @@ app.post('/uploads', async (req, res, next) => {
         message: "Upload was successful",
         data: imageUrl
       })
-    res.redirect('/uploads')
+    // res.redirect('/uploads')
   } catch (error) {
     next(error)
   }

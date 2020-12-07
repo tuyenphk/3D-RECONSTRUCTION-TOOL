@@ -5,7 +5,7 @@ const storage = new Storage();
 const bucketName = 'symmetry-demo-bucket';
 const bucket = gc.bucket('symmetry-demo-bucket');
 
-const fileDownload = () => {
+async function fileDownload() {
   const srcFilename = 'table.png';
   const destFilename = '../../../Pixel2Mesh/Data/examples/table.png';
   const options = {
@@ -24,7 +24,7 @@ const fileDownload = () => {
   }
 }
 
-module.exports = fileDownload
+// module.exports = fileDownload
 
 // ----------------------- query file ------------------------
 //-

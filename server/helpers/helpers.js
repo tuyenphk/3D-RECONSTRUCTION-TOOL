@@ -42,6 +42,37 @@ const uploadImage = (file) => new Promise((resolve, reject) => {
 
 })
 
+
+const uploadObj = (file) => new Promise((resolve, reject) => {
+  /**
+   * The properties being extracted here must match those passed into  
+   * the FormData body in the browser.
+   * const uploadImage = (file) => new Promise((resolve, reject) => { //  The created promise will eventually end in a resolved state, or in a rejected state, calling the respective callback functions (passed to then and catch) upon finishing.
+   */
+
+  // search for file from path
+
+  const { filename, fileblob } = file
+  const blob = bucket.file(filename.replace(/ /g, "_"))
+  const blobStream = blob.createWriteStream({
+    resumable: false
+  })
+
+  blobStream
+  .on('finish', () => {
+    const publicUrl = format(
+      `https://storage.googleapis.com/${bucket.name}/${blob.name}`
+    )
+    resolve(publicUrl)
+  })
+  .on('error', (error) => {
+    reject(error)
+  })
+  .end(fileblob)
+
+})
+
+
 const downloadObj = (imageFilename) =>  { // take in objFilename
   
   var filename = imageFilename.split('.')[0]+'.obj';
@@ -50,5 +81,5 @@ const downloadObj = (imageFilename) =>  { // take in objFilename
   return url;
 }
 
-module.exports = {uploadImage,downloadObj}
+module.exports = {uploadImage,downloadObj,uploadObj}
 

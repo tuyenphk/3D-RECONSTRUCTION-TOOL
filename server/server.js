@@ -57,11 +57,9 @@ app.post('/downloadObj', async (req, res, next) => {
 // render
 app.post('/render1', async (req, res, next) => {
   try {
-    console.log ("requested receive")
-    
     // const imageFilename = await fileDownload();
-    const objFilename = await spawnExec(imageFilename)
-    const objUrl = await uploadImage(req.body) // ---> need to change
+    // const objFilepath = await spawnExec(imageFilename)
+    // const objUrl = await uploadObj(objFilepath) // ---> need to change 
     /*
     // download image to local -- download script
 

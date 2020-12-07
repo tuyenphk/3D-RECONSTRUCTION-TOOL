@@ -5,6 +5,7 @@ const multer = require('multer')
 
 const {uploadImage,downloadObj} = require('./helpers/helpers')
 const spawnExec = require('./helpers/spawnExec')
+const fileDownload = require('./helpers/fileDownload')
 
 const app = express()
 
@@ -57,8 +58,11 @@ app.post('/downloadObj', async (req, res, next) => {
 app.post('/render1', async (req, res, next) => {
   try {
     console.log ("requested receive")
-    // grab imageUrl
-    const objFilename = await spawnExec(req.body)
+    
+    const imageFilename = await fileDownload();
+    const objFilename = await spawnExec(imageFilename)
+    const objUrl = await uploadImage(req.body) // ---> need to change
+    
     /*
     // download image to local -- download script
 
@@ -77,7 +81,7 @@ app.post('/render1', async (req, res, next) => {
       .status(200)
       .json({
         message: "Render was successful",
-        data: objFilename
+        data: objUrl
       })
       console.log ("finished render %s",objFilename)
   } catch (error) {

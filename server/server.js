@@ -58,7 +58,7 @@ app.post('/render1', async (req, res, next) => {
   try {
     console.log ("requested receive")
     // grab imageUrl
-    const outPut = await spawnExec(req.body)
+    const objFilename = await spawnExec(req.body)
     /*
     // download image to local -- download script
 
@@ -72,7 +72,7 @@ app.post('/render1', async (req, res, next) => {
     // 
 
     */
-    console.log ("finished render")
+    console.log ("finished render %s",objFilename)
     res
       .status(200)
       .json({

@@ -10,7 +10,8 @@ const spawnExec = (imageFilename) => new Promise((resolve, reject) => {
         console.log(`stdout: ${data}`); // grab data to "stdout" object
         /* do sth with stdout */
         // extra obj file name input.obj
-        // resolve(/** obj name */)
+        objFilename = imageFilename.split('.')[0]+'.obj';
+        resolve(objFilename)
     });
 
     ls.stderr.on("data", data => {

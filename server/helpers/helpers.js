@@ -46,6 +46,6 @@ const downloadObj = (file) =>  {
   return url;
 }
 
-
+// module.exports = uploadImage
 module.exports = {uploadImage,downloadObj}
 

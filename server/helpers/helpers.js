@@ -42,9 +42,9 @@ const uploadImage = (file) => new Promise((resolve, reject) => {
 
 })
 
-const downloadObj = (file) =>  { // take in objFilename
+const downloadObj = (imageFilename) =>  { // take in objFilename
   
-  var filename = file.split('.')[0]+'.obj';
+  var filename = imageFilename.split('.')[0]+'.obj';
   const url = `https://storage.googleapis.com/obj_file_bucket/${filename}`;
   
   return url;

@@ -36,17 +36,17 @@ const Upload = () => {
     //   window.alert("File does not support. You must use .png or .jpg ");
     //   return false;
     // }
-    // if (file.size > 5e6) {
-    //   window.alert("Please upload a file smaller than 5 MB");
-    //   return false;
-    // }
+    if (file.size > 5e6) {
+      window.alert("Please upload a file smaller than 5 MB");
+      return false;
+    }
 
   };
 
   const modelRender = event =>{
     var formData = new FormData();
     formData.append('filename', filename);
-    fetch('http://localhost:9001/downloadObj', {
+    fetch('http://35.196.125.66/:9001/downloadObj', {
       method:'POST',
       body: formData
     }) 
@@ -65,7 +65,7 @@ const Upload = () => {
     formData.append('fileblob', file);
     formData.append('filename', filename);
     console.log(filename);
-    fetch('http://localhost:9001/uploads', {
+    fetch('http://35.196.125.66:9001/uploads', {
       method:'POST',
       body: formData
     }) 

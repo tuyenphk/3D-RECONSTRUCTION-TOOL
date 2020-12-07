@@ -1,43 +1,59 @@
 [
     {
-      "name": "Sample1",
-      "image": "/img/search/Sample1.png"
+      "name": "lamp",
+      "image": "/img/search/lamp.png"
     },
     {
-      "name": "Sample2",
-      "image": "/img/search/Sample2.png"
-    },
-    {
-      "name": "Sample3",
-      "image": "/img/search/Sample3.png"
-    },
-    {
-      "name": "Sample4",
-      "image": "/img/search/Sample4.png"
-    },
-    {
-      "name": "Sample5",
-      "image": "/img/search/Sample5.png"
-    },
-    {
-        "name": "Sample6",
-        "image": "/img/search/Sample6.png"
-    },
-    {
-        "name": "Sample7",
-        "image": "/img/search/Sample7.png"
+      "name": "table",
+      "image": "/img/search/table.png"
     },  
     {
-      "name": "Sample8",
-      "image": "/img/search/Sample8.png"
+      "name": "chair",
+      "image": "/img/search/chair.png"
+    },
+    {
+      "name": "plane",
+      "image": "/img/search/plane.png"
+    },
+    {
+      "name": "car",
+      "image": "/img/search/car.png"
+    },
+    {
+      "name": "ship",
+      "image": "/img/search/ship.png"
+    },
+    {
+      "name": "ship2",
+      "image": "/img/search/ship2.png"
+    },
+    {
+      "name": "sub1",
+      "image": "/img/search/sub1.png"
+    },
+    {
+      "name": "sub2",
+      "image": "/img/search/sub2.png"
+    },
+    {
+      "name": "sample-nebula-2",
+      "image": "/img/search/sample-nebula-2.png"
+    },
+    {
+      "name": "sample-nebula",
+      "image": "/img/search/sample-nebula.png"
+    },
+    {
+      "name": "crab-nebula-2",
+      "image": "/img/search/crab-nebula-2.png"
     },  
     {
-      "name": "Sample9",
-      "image": "/img/search/Sample9.png"
+      "name": "ghost-nebula",
+      "image": "/img/search/ghost-nebula.png"
     },  
     {
-      "name": "Sample10",
-      "image": "/img/search/Sample10.png"
+      "name": "crab-nebula",
+      "image": "/img/search/crab-nebula.png"
     }  
 ]
   

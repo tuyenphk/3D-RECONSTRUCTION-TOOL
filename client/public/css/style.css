@@ -305,6 +305,22 @@ header .intro-text {
 #resources{
 	padding: 100px;
 }
+#resources h2 {
+	position: relative;
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+}
+
+#resources h2::after {
+	position: absolute;
+	content: "";
+	background: linear-gradient(to right, #5ca9fb 0%, #6372ff 100%);
+	height: 4px;
+	width: 60px;
+	bottom: 0;
+	left: 0;
+}
+
 /* Team Section */
 #team {
 	padding: 100px;
@@ -314,6 +330,7 @@ header .intro-text {
 }
 #team .team-img {
 	width: 240px;
+	height: 240px;
 }
 #team .thumbnail {
 	background: transparent;

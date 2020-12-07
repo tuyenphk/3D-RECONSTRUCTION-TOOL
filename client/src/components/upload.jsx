@@ -32,14 +32,14 @@ const Upload = () => {
     };
     reader.readAsDataURL(event.target.files[0]);
 
-    if (!filename.endsWith('png') || !filename.endsWith('jpg')   ) {
-      window.alert("File does not support. You must use .png or .jpg ");
-      return false;
-    }
-    if (file.size > 5e6) {
-      window.alert("Please upload a file smaller than 5 MB");
-      return false;
-    }
+    // if (!filename.endsWith('png') || !filename.endsWith('jpg')   ) {
+    //   window.alert("File does not support. You must use .png or .jpg ");
+    //   return false;
+    // }
+    // if (file.size > 5e6) {
+    //   window.alert("Please upload a file smaller than 5 MB");
+    //   return false;
+    // }
 
   };
 

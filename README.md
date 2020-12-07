@@ -21,6 +21,10 @@ To enjoy our application, follow those steps below:
 3. run the backend server: <strong>node index.js</strong>
 4. If you want to create the bucket on Google Cloud Storage, remember to dowload the json key file in APIs & Services/Credentials into the server/config folder. Also make change the bucket name in helpers/helpers.js, the project id and serviceKey in config/index.js
 
+# Testing Website
+
+http://35.196.125.66:8888/#page-top
+
 # Release Note(s)
 
 v1.0: https://github.com/tuyenphk/3D-RECONSTRUCTION-TOOL/releases/tag/v1.0
@@ -45,6 +49,5 @@ v3.0: https://github.com/tuyenphk/3D-RECONSTRUCTION-TOOL/releases/tag/v3.0
 - Ability to render and view sample 2D models and their respective 3D maps
 - Backend ability to download from cloud storage into local storage
 - Upload functionality & render 3D model for a "Plan.png" file
-
 
 

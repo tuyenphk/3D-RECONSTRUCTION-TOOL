@@ -60,6 +60,7 @@ const uploadObj = (objFilename) => new Promise((resolve, reject) => {
   // search for file f
 
   // const { filename, fileblob } = file
+  console.log(process.cwd())
   const objFilePath = "../../../Pixel2Mesh/Data/examples/" + objFilename;
   objBucket.upload(objFilePath);
   // const blob = bucket.file(objFilePath)

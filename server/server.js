@@ -62,8 +62,9 @@ app.post('/render', async (req, res, next) => {
     console.log ("file %s downloaded",req.body.filename)
     const objFilename = await spawnExec(req.body.filename)
     console.log ("finished creating obj for %s",req.body.filename)
-    const objUrl = await uploadObj(objFilename) // ---> need to change 
-    
+    // const objUrl = await uploadObj(objFilename) // ---> need to change 
+    var filename = req.body.filename.split('.')[0]+'.obj';
+    const objUrl = `https://storage.googleapis.com/obj_file_bucket/${filename}`;
     /*
     // download image to local -- download script
 

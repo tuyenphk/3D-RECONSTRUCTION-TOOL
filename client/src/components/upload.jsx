@@ -46,7 +46,7 @@ const Upload = () => {
   const modelRender = event =>{
     var formData = new FormData();
     formData.append('filename', filename);
-    fetch('http://35.196.125.66/:9001/downloadObj', {
+    fetch('http://35.196.125.66:9001/downloadObj', {
       method:'POST',
       body: formData
     }) 

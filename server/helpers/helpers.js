@@ -21,10 +21,10 @@ const uploadImage = (file) => new Promise((resolve, reject) => {
    * const uploadImage = (file) => new Promise((resolve, reject) => { //  The created promise will eventually end in a resolved state, or in a rejected state, calling the respective callback functions (passed to then and catch) upon finishing.
    * https://googleapis.dev/nodejs/storage/latest/File.html#createWriteStream
    */
-  const blob = bucket.file(file.filename.replace(/ /g, "_"));
+  const blob = bucket.file(file.filename.replace(/ /g, "_"))
   const blobStream = blob.createWriteStream({ 
     resumable: false
-  });
+  })
 
   // fs.createReadStream(filename)
   // .pipe(blob.createWriteStream({ resumable: false }))

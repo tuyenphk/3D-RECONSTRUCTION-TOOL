@@ -6,7 +6,7 @@ const bucketName = 'symmetry-demo-bucket';
 const bucket = gc.bucket('symmetry-demo-bucket');
 
 const fileDownload = (imageFilename) => new Promise((resolve, reject) => {
-  const destFilename = '../../../Pixel2Mesh/Data/examples/' + imageFilename;
+  const destFilename = '../../Pixel2Mesh/Data/examples/' + imageFilename;
   const options = {
     // The path to which the file should be downloaded, e.g. "./file.txt"
     destination: destFilename,
@@ -20,7 +20,7 @@ const fileDownload = (imageFilename) => new Promise((resolve, reject) => {
     // console.log(`gs://${bucketName}/${srcFilename} downloaded to ${destFilename}.`);
   }
   catch(err){
-    console.log(err)
+    console.log("Error downloading:" + err)
   }
 })
 

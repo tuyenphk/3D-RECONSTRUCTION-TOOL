@@ -28,13 +28,13 @@ app.post('/uploads', async (req, res, next) => {
   try {
     console.log ("requested receive")
     const imageUrl = await uploadImage(req.body)
-    window.location.reload();
     res
       .status(200)
       .json({
         message: "Upload was successful",
         data: imageUrl
       })
+      res.redirect('/')
   } catch (error) {
     next(error)
   }

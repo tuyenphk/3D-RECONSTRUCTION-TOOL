@@ -59,6 +59,7 @@ app.post('/downloadObj', async (req, res, next) => {
 app.post('/render', async (req, res, next) => {
   try {
     await fileDownload(req.body.filename);
+    console.log ("file %s downloaded",req.body.filename)
     const objFilename = await spawnExec(req.body.filename)
     const objUrl = await uploadObj(objFilename) // ---> need to change 
     

@@ -31,28 +31,28 @@ export class Navigation extends Component {
             <ul className="nav navbar-nav navbar-right">
               <li>
               <HashLink to="/#page-top" className="page-scroll">
-                Home
+                  Home
               </HashLink>
               </li>
               <li>
               <HashLink to="/#about" className="page-scroll">
-              about
-            </HashLink>
+                  about
+              </HashLink>
               </li>
               <li>
               <HashLink to="/#modeling" className="page-scroll">
-  Modeling
-</HashLink>
+                  Modeling
+                </HashLink>
               </li>
               <li>
-              <HashLink to="/#resource" className="page-scroll">
-  Resources
-</HashLink>
+              <HashLink to="/#resources" className="page-scroll">
+                Resources
+              </HashLink>
               </li>
               <li>
               <HashLink to="/#team" className="page-scroll">
-  Team
-</HashLink>
+                  Team
+                </HashLink>
               </li>
              
             </ul>

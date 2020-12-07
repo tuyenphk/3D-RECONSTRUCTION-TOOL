@@ -30,6 +30,14 @@
     {
       "name": "Sample8",
       "image": "/img/search/Sample8.png"
-  }  
+    },  
+    {
+      "name": "Sample9",
+      "image": "/img/search/Sample9.png"
+    },  
+    {
+      "name": "Sample10",
+      "image": "/img/search/Sample10.png"
+    }  
 ]
   

@@ -81,6 +81,7 @@ const Upload = () => {
           <Col md={6}>
             <div className="upload-text">
               <h3>Upload a 2D image to model</h3>
+              <p> (white/no background only) </p>
               <input className="btn btn-secondary"
                 id="fileInput"
                 type="file"

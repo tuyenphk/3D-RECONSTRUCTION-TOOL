@@ -15,6 +15,7 @@ const fileDownload = (imageFilename) => new Promise((resolve, reject) => {
   // Downloads the file  
   try {
     console.log ("start downloading %s",imageFilename)
+    console.log(process.cwd())
     storage.bucket(bucketName).file(imageFilename).download(options); 
     // console.log(`gs://${bucketName}/${srcFilename} downloaded to ${destFilename}.`);
   }

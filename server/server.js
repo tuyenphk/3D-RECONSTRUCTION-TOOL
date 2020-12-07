@@ -72,13 +72,14 @@ app.post('/render1', async (req, res, next) => {
     // 
 
     */
-    console.log ("finished render %s",objFilename)
+
     res
       .status(200)
       .json({
         message: "Render was successful",
-        data: outPut
+        data: objFilename
       })
+      console.log ("finished render %s",objFilename)
   } catch (error) {
     next(error)
   }

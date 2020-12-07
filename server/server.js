@@ -35,6 +35,7 @@ app.post('/uploads', async (req, res, next) => {
         message: "Upload was successful",
         data: imageUrl
       })
+      window.location.reload();
   } catch (error) {
     next(error)
   }

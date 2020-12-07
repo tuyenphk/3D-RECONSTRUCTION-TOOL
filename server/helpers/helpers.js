@@ -4,7 +4,9 @@ const fs = require('fs');
 const gc = require('../config/')
 const bucket = gc.bucket('symmetry-demo-bucket')
 const objBucket = gc.bucket('obj_file_bucket')
-const format = require('util').format;
+
+const { format } = util
+
 /**
  *
  * @param { File } object file object that will be uploaded
@@ -21,7 +23,8 @@ const uploadImage = (file) => new Promise((resolve, reject) => {
    * const uploadImage = (file) => new Promise((resolve, reject) => { //  The created promise will eventually end in a resolved state, or in a rejected state, calling the respective callback functions (passed to then and catch) upon finishing.
    * https://googleapis.dev/nodejs/storage/latest/File.html#createWriteStream
    */
-  const blob = bucket.file(file.filename.replace(/ /g, "_"))
+  const { filename, fileblob } = file
+  const blob = bucket.file(filename.replace(/ /g, "_"))
   const blobStream = blob.createWriteStream({ 
     resumable: false
   })
@@ -38,16 +41,17 @@ const uploadImage = (file) => new Promise((resolve, reject) => {
   //   resolve(publicUrl)
   // });
 
-  blobStream.on('finish', () => {
+  blobStream
+  .on('finish', () => {
     const publicUrl = format(
       `https://storage.googleapis.com/${bucket.name}/${blob.name}`
     )
     resolve(publicUrl)
   })
-  // .on('error', (error) => {
-  //   reject(error)
-  // })
-  // .end(fileblob)
+  .on('error', (error) => {
+    reject(error)
+  })
+  .end(fileblob)
 
 })
 

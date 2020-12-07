@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const multer = require('multer')
 
 // const uploadImage = require('./helpers/helpers')
-const {uploadImage,downloadObj} = require('./helpers/helpers')
+const {uploadImage,downloadObj,uploadObj} = require('./helpers/helpers')
 const spawnExec = require('./helpers/spawnExec')
 const fileDownload = require('./helpers/fileDownload')
 
@@ -56,11 +56,12 @@ app.post('/downloadObj', async (req, res, next) => {
 })
 
 // render
-app.post('/render1', async (req, res, next) => {
+app.post('/render', async (req, res, next) => {
   try {
-    // const imageFilename = await fileDownload();
-    // const objFilepath = await spawnExec(imageFilename)
-    // const objUrl = await uploadObj(objFilepath) // ---> need to change 
+    await fileDownload(req.body.filename);
+    const objFilename = await spawnExec(req.body.filename)
+    const objUrl = await uploadObj(objFilename) // ---> need to change 
+    
     /*
     // download image to local -- download script
 
@@ -78,10 +79,10 @@ app.post('/render1', async (req, res, next) => {
     res
       .status(200)
       .json({
-        message: "Render was successful",
+        message: "Succeed building obj",
         data: objUrl
       })
-      console.log ("finished render %s",objFilename)
+      console.log ("finished rendering %s",objFilename)
   } catch (error) {
     next(error)
   }

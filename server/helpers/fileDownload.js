@@ -5,9 +5,8 @@ const storage = new Storage();
 const bucketName = 'symmetry-demo-bucket';
 const bucket = gc.bucket('symmetry-demo-bucket');
 
-async function fileDownload() {
-  const srcFilename = 'table.png';
-  const destFilename = '../../../Pixel2Mesh/Data/examples/table.png';
+const fileDownload = (imageFilename) => new Promise((resolve, reject) => {
+  const destFilename = '../../../Pixel2Mesh/Data/examples/' + imageFilename;
   const options = {
     // The path to which the file should be downloaded, e.g. "./file.txt"
     destination: destFilename,
@@ -15,22 +14,21 @@ async function fileDownload() {
 
   // Downloads the file  
   try {
-    await storage.bucket(bucketName).file(srcFilename).download(options); 
-    console.log(`gs://${bucketName}/${srcFilename} downloaded to ${destFilename}.`);
-    return destFilename;
+    storage.bucket(bucketName).file(imageFilename).download(options); 
+    // console.log(`gs://${bucketName}/${srcFilename} downloaded to ${destFilename}.`);
   }
   catch(err){
     console.log(err)
   }
-}
+})
 
-// module.exports = fileDownload
+module.exports = fileDownload
 
 // ----------------------- query file ------------------------
-//-
+// -
 // To control how many API requests are made and page through the results
 // manually, set `autoPaginate` to `false`.
-//-
+// -
 // const callback = function(err, files, nextQuery, apiResponse) {
 //   if (nextQuery) {
 //     // More results exist.

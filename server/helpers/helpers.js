@@ -55,6 +55,7 @@ const uploadObj = (objFilename) => new Promise((resolve, reject) => {
 
   blobStream
   .on('finish', () => {
+    console.log ("Uploading to objBucket")
     const publicUrl = format(
       `https://storage.googleapis.com/${objBucket.name}/${objFilename}`
     )

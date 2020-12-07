@@ -61,6 +61,7 @@ app.post('/render', async (req, res, next) => {
     await fileDownload(req.body.filename);
     console.log ("file %s downloaded",req.body.filename)
     const objFilename = await spawnExec(req.body.filename)
+    console.log ("finished creating obj for %s",req.body.filename)
     const objUrl = await uploadObj(objFilename) // ---> need to change 
     
     /*
